@@ -1,0 +1,6 @@
+Author: Murashko Julia <my_dream13@list.ru>
+Date:   Sat Feb 10 19:08:35 2018 +0300
+add task1/status.txt
+Author: Murashko Julia <my_dream13@list.ru>
+Date:   Sat Feb 10 19:06:42 2018 +0300
+add.gitignore
