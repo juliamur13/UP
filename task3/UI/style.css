@@ -1,4 +1,4 @@
- #header {
+п»ї #header {
     width: 100%;
 	hight: 10%;
 	margin: auto;
@@ -47,46 +47,52 @@ table.header td {
    
    table.middle{
    width: 100%;
-   border-collapse: collapse; /* Убираем двойные линии между ячейками */
+   border-collapse: collapse; /* Г“ГЎГЁГ°Г ГҐГ¬ Г¤ГўГ®Г©Г­Г»ГҐ Г«ГЁГ­ГЁГЁ Г¬ГҐГ¦Г¤Гі ГїГ·ГҐГ©ГЄГ Г¬ГЁ */
    border: 2px solid white;
    }
    table.middle td{
    vertical-align: top;
-    text-align: left; /* Выравнивание по левому краю */
+    text-align: left; /* Г‚Г»Г°Г ГўГ­ГЁГўГ Г­ГЁГҐ ГЇГ® Г«ГҐГўГ®Г¬Гі ГЄГ°Г Гѕ */
    }
    td.left_space_middle{
-  border: 2px solid white;
    width: 13%;
    }
 	td.user{
-	padding: 3px; /* Поля вокруг содержимого таблицы */
-    border: 1px solid maroon; /* Параметры рамки */
+	padding: 3px; /* ГЏГ®Г«Гї ГўГ®ГЄГ°ГіГЈ Г±Г®Г¤ГҐГ°Г¦ГЁГ¬Г®ГЈГ® ГІГ ГЎГ«ГЁГ¶Г» */
+    border: 1px solid maroon; /* ГЏГ Г°Г Г¬ГҐГІГ°Г» Г°Г Г¬ГЄГЁ */
 	border-color: #858181;
 	width: 13%;
-	vertical-align: center;
 	}
 	font.user_text{
 	font-size:2vmin;
 	}
 	
+	img.user_name_photo{
+	vertical-align: middle;
+	width: 35%;
+	height: auto;
+	}
+
+	font.user_name_text_left{
+	font-size: 1.9vmin;
+	}
 
 	td.lenta{
-	padding: 3px; /* Поля вокруг содержимого таблицы */
-    border: 1px solid maroon; /* Параметры рамки */
+	padding: 3px; /* ГЏГ®Г«Гї ГўГ®ГЄГ°ГіГЈ Г±Г®Г¤ГҐГ°Г¦ГЁГ¬Г®ГЈГ® ГІГ ГЎГ«ГЁГ¶Г» */
+    border: 1px solid maroon; /* ГЏГ Г°Г Г¬ГҐГІГ°Г» Г°Г Г¬ГЄГЁ */
 	border-color: #858181;
 	width: 48%;
 	
 	}
 	td.filter{
-	padding: 3px; /* Поля вокруг содержимого таблицы */
-    border: 1px solid maroon; /* Параметры рамки */
+	padding: 3px; /* ГЏГ®Г«Гї ГўГ®ГЄГ°ГіГЈ Г±Г®Г¤ГҐГ°Г¦ГЁГ¬Г®ГЈГ® ГІГ ГЎГ«ГЁГ¶Г» */
+    border: 1px solid maroon; /* ГЏГ Г°Г Г¬ГҐГІГ°Г» Г°Г Г¬ГЄГЁ */
 	border-color: #858181;
 	width: 13%;
 	}
-	td.rightSpaceMiddle{
+	td.right_space_middle{
    width:13%;
    }
-
 
 	table.user_panel {
     width:  100%; 
@@ -103,7 +109,21 @@ table.header td {
    }
    font.user_name_text{
 	font-size: 1.9vmin;
+	color: #ffffff;
 	}
+
+	img.button_edit{
+	 width: 13%;
+	  height: auto;
+	   border: 0;
+	float: right;
+	}
+	
+	img.user_photopost{
+	width: 100%;
+	height: auto;
+	}
+
    td.buttons{
    width: 70%;
    }
@@ -142,7 +162,12 @@ table.header td {
    td.comments{
    background: #000000;
    width:35%;
-   
+   }
+
+   hr.white_line{
+   border: none;
+   background-color: #ffffff;
+   height: 1px;
    }
    .comments_text {
    overflow: scroll;
@@ -150,9 +175,19 @@ table.header td {
 	height:50vmin;
 	}
 
+	img.user_comments{
+	vertical-align: middle;
+	width: 20%;
+	height:auto;
+	}
+
 	input.text{
 	width:100%;
 	resize: none;
+	wrap: hard;
+	cols: 20;
+	rows: 3;
+	 onblur: this.className='text';
 	}
 
 	input.add_text{
@@ -161,6 +196,11 @@ table.header td {
 	vertical-align: center;
 	background-color: #f0eeee;
 	border: none;
+	margin: 0 0 0 10%;
+	wrap: hard;
+	cols: 20;
+	rows: 3;
+	onblur: this.className='text';
 	}
 
     input.button_search{
@@ -169,27 +209,46 @@ table.header td {
 	font-size: 2.3vmin;
 	font-family: 'Times New Roman';
 	border: none;
+	
+	}
+
+	.button_search_place{
+	text-align: center;
 	}
 
 	input.button_add_filter{
 		background:  #ffffff;
 		border: none;
 		font-size: 1.5vmin;
+		margin: 0 18% 0 82%;
 	}
    
+   select.hashtag{
+   margin: 0 0 0 17%;
+   width: 60%;
+   }
+
    input.button_load_more{
-		background: #000000;
+	background: #000000;
 	color: #ffffff;
 	font-size: 2.3vmin;
 	font-family: 'Times New Roman';
 	border: none;
-	
-  
+	float: right;
 	}
+
 
 
    font.filter_text{
    font-size: 2.7vmin;
+   }
+
+   hr.line_gray{
+   align="center";
+   width="80%";
+   border = "none";
+   background-color="#858181";
+   height: 1px
    }
 
    font.filter_criteria_text{
@@ -197,7 +256,7 @@ table.header td {
    margin: 0px 0px  0px 10%;
    }
 
- footer {/* подвал сайта */
+ footer {/* ГЇГ®Г¤ГўГ Г« Г±Г Г©ГІГ  */
 	width:100%;
 	position:absolute;
 	bottom: 0;
@@ -238,4 +297,3 @@ table.header td {
    width:13%;
    }
    
- 
