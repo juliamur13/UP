@@ -1,18 +1,18 @@
 ﻿@import url(https://fonts.googleapis.com/css?family=Cormorant+Garamond);
 @import url(https://fonts.googleapis.com/css?family=Dancing+Script);
 
-	body{
+body{
 	background: #efeee9;
 	margin: 0 auto;
 	font-family: 'Cormorant Garamond';
-	}
+}
 
 .header_line{
 	display: flex;
 	width: 100%;
 	justify-content: space-between;
 	align-items: center;
-	}
+}
 header{
 	height: 5.7vw;
 	width: 100%;
@@ -82,7 +82,7 @@ main{
 }
 
 .user_name_text{
-	
+
 	font-size: 1.7vw;
 	font-family: 'Dancing Script';
 }
@@ -128,7 +128,7 @@ main{
 	vertical-align: middle;
 }
 
-.link_edit{
+.link_edit, .link_edit_delete, .link_edit_like{
 	text-decoration: none;
 }
 .button_edit{
@@ -137,7 +137,7 @@ main{
 	background-color: #000000;
 }
 .button_edit_like{
-text-decoration: none;
+	text-decoration: none;
 	width: 4.4vw;
 	height:4.4vw;
 	background-color: #000000;
@@ -145,9 +145,9 @@ text-decoration: none;
 
 .lenta{
 	display: inline-block;
-    float: left;
-    text-align: center;
-    margin: 3vw 0 0 0;
+	float: left;
+	text-align: center;
+	margin: 3vw 0 0 0;
 }
 .photopost{
 	display: flex;
@@ -163,28 +163,30 @@ text-decoration: none;
 }
 .comments{
 	width: 35%;
-	
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
-.list_comments{
-background-color: #000000;
+list_comments{
+	background-color: #000000;
 }
 .comments_overflow{
-	
 	overflow: scroll;
 	overflow-x: hidden;
-	min-height:44vw;
-	::-webkit-scrollbar {
-    width: 2vw;
+	background-color: #000000;
+	min-height: 65vw;
+::-webkit-scrollbar {
+	width: 2vw;
 }
- 
+
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0 , 0, 0.3); 
-    border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0 , 0, 0.3);
+	border-radius: 10px;
 }
- 
+
 ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 }
 .user_comments_photo{
@@ -211,36 +213,51 @@ background-color: #000000;
 	margin: 0;
 	color: #ffffff;
 }
+.likes_text{
+    font-size: 1.45vw;
+    margin: 0;
+    color: #ffffff;
+}
+.hashTag_text{
+    font-size: 1.45vw;
+    margin: 0;
+    color: #ffffff;
+}
+.description_text{
+    font-size: 1.45vw;
+    margin: 0;
+    color: #ffffff;
+}
 .text{
 	border: none;
 	margin: 0 auto;
-    font-family: 'Cormorant Garamond';
-    height: 3.4vw;
-    font-size: 1.2vw;
+	font-family: 'Cormorant Garamond';
+	height: 3.4vw;
+	font-size: 1.2vw;
 	width: 100%;
 	padding: 0;
 }
 
 .button_add_filter{
-		background:  #ffffff;
-		border: none;
-		font-size: 0.9vw;
+	background:  #ffffff;
+	border: none;
+	font-size: 0.9vw;
 }
 .add_text{
 	border: none;
-    font-family: 'Cormorant Garamond';
-    height: 3vw;
-    font-size: 1.2vw;
+	font-family: 'Cormorant Garamond';
+	height: 3vw;
+	font-size: 1.2vw;
 }
 .parent_input{
 	display: flex;
-	 justify-content: space-between;
-	 width: 100%;
+	justify-content: space-between;
+	width: 100%;
 }
 .footer_line{
 	display: flex;
 	text-align: center;
-	width: 100%;	
+	width: 100%;
 	justify-content: space-between;
 	align-items: center;
 	background-color: #000000;
@@ -270,7 +287,7 @@ background-color: #000000;
 	width: 3vw;
 	height: 3vw;
 }
-.load_more{
+.load_more {
 	text-align: center;
 	background-color: #d4d1c4;
 }
@@ -278,22 +295,26 @@ background-color: #000000;
 	main{
 		width: 70%;
 	}
-	.header_line{
+	.header_line {
 		width: 70%;
+	}
+	.comments_overflow {
+		min-height: 45vw;
+		background-color: #000000;
 	}
 }
 ::-webkit-scrollbar {
-    width: 1vw;
+	width: 1vw;
 }
- 
+
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-    border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
 }
- 
+
 ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,1); 
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,1);
 }
 
 .date_post{
@@ -302,17 +323,20 @@ background-color: #000000;
 }
 
 .select_text{
-width: 12vw;
+	width: 12vw;
 	border: none;
-    font-family: 'Cormorant Garamond';
-    height: 3vw;
-    font-size: 1.2vw;
+	font-family: 'Cormorant Garamond';
+	height: 3vw;
+	font-size: 1.2vw;
+}
+.comments_text{
+	border-bottom: 1px solid #ffffff;
 }
 select {
-  -webkit-appearance: none;
+	-webkit-appearance: none;
 }
 
-#all_posts{
+.all_posts{
 	display: flex;
 	flex-direction: column;
 	background-color: #e1ddd1;
