@@ -81,8 +81,7 @@ var moduleScript = (function() {
 
     function removePhotoPost(photoPosts, id) {
         for (var i in photoPosts) {
-            if (photoPosts[i].id === id) {
-            }
+            if (photoPosts[i].id === id) {}
         }
         return false;
     }

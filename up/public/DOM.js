@@ -75,13 +75,13 @@ var moduleDOM = (function() {
         posts.sort(compareDate);
         return posts;
     }
-function controlSelector(photoPosts) {
-        for(var indexPosts = 0; indexPosts < photoPosts.length; indexPosts++){
-            for(var indexComments = 0; indexComments < photoPosts[indexPosts].comments.length; indexComments++) {
+    function controlSelector(photoPosts) {
+        for (var indexPosts = 0; indexPosts < photoPosts.length; indexPosts++) {
+            for (var indexComments = 0; indexComments < photoPosts[indexPosts].comments.length; indexComments++) {
                 addHashTagsSelect(moduleEvents.searchHashTags(photoPosts[indexPosts].comments[indexComments].comment));
             }
         }
-}
+    }
 
     function displayPhotoPosts(photoPosts, user, countElementsAdd) {
         controlUser(user);
@@ -90,10 +90,9 @@ function controlSelector(photoPosts) {
         var countPostsDisplay;
         var countPostsHtml = document.getElementsByClassName('post').length;
         photoPosts = sortPostsByDate(photoPosts);
-        if(countElementsAdd === 0 && countPostsHtml === 0){
+        if (countElementsAdd === 0 && countPostsHtml === 0) {
             countPostsDisplay = COUNT_ELEMENTS;
-        }
-        else {
+        } else {
             if (photoPosts.length < countElementsAdd + countPostsHtml) {
                 countPostsDisplay = photoPosts.length;
             } else {
@@ -126,13 +125,13 @@ function controlSelector(photoPosts) {
         var arr = [];
         var viewHashTags = [];
         var options = document.getElementsByTagName('option');
-        for(var index = 0; index < options.length; index++){
+        for (var index = 0; index < options.length; index++) {
             viewHashTags.push(options[index].innerHTML);
         }
         for (var item = 0; item < arrHashTags.length; item++) {
-                if (viewHashTags.indexOf(arrHashTags[item]) === -1) {
-                    arr.push(arrHashTags[item]);
-                }
+            if (viewHashTags.indexOf(arrHashTags[item]) === -1) {
+                arr.push(arrHashTags[item]);
+            }
         }
         var select = document.querySelector('.select_text');
         for (var indexArr = 0; indexArr < arr.length; indexArr++) {

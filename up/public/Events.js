@@ -15,7 +15,7 @@ var photoPosts = [{
 }, {
     id: '2',
     description: 'description2',
-    createdAt: new Date(2018, 3, 24),
+    createdAt: new Date(2018,3,24),
     author: 'Author2',
     photoLink: 'site/photo3.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -28,7 +28,7 @@ var photoPosts = [{
 }, {
     id: '3',
     description: 'description3',
-    createdAt: new Date(2018, 3, 23),
+    createdAt: new Date(2018,3,23),
     author: 'Author3',
     photoLink: 'site/photo4.jpg',
     hashTags: ['#hashTag2', '#hashTag1', '#hashTag3'],
@@ -41,7 +41,7 @@ var photoPosts = [{
 }, {
     id: '4',
     description: 'description4',
-    createdAt: new Date(2018, 3, 22),
+    createdAt: new Date(2018,3,22),
     author: 'Author4',
     photoLink: 'site/photo5.jpg',
     hashTags: ['#hashTag10', '#hashTag20', '#hashTag30'],
@@ -54,7 +54,7 @@ var photoPosts = [{
 }, {
     id: '5',
     description: 'description5',
-    createdAt: new Date(2018, 3, 21),
+    createdAt: new Date(2018,3,21),
     author: 'Author5',
     photoLink: 'site/photo3.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -67,7 +67,7 @@ var photoPosts = [{
 }, {
     id: '6',
     description: 'description6',
-    createdAt: new Date(2018, 3, 20),
+    createdAt: new Date(2018,3,20),
     author: 'Author6',
     photoLink: 'site/photo6.jpg',
     hashTags: ['#hashTag2', '#hashTag1', '#hashTag3'],
@@ -80,7 +80,7 @@ var photoPosts = [{
 }, {
     id: '7',
     description: 'description7',
-    createdAt: new Date(2018, 3, 19),
+    createdAt: new Date(2018,3,19),
     author: 'Author7',
     photoLink: 'site/photo7.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -93,7 +93,7 @@ var photoPosts = [{
 }, {
     id: '8',
     description: 'description8',
-    createdAt: new Date(2018, 3, 18),
+    createdAt: new Date(2018,3,18),
     author: 'Author8',
     photoLink: 'site/photo8.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -106,7 +106,7 @@ var photoPosts = [{
 }, {
     id: '9',
     description: 'description9',
-    createdAt: new Date(2018, 3, 17),
+    createdAt: new Date(2018,3,17),
     author: 'Author9',
     photoLink: 'site/photo10.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -119,7 +119,7 @@ var photoPosts = [{
 }, {
     id: '10',
     description: 'description10',
-    createdAt: new Date(2018, 3, 16),
+    createdAt: new Date(2018,3,16),
     author: 'Author10',
     photoLink: 'site/photo11.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -132,7 +132,7 @@ var photoPosts = [{
 }, {
     id: '11',
     description: 'description11',
-    createdAt: new Date(2018, 3, 15),
+    createdAt: new Date(2018,3,15),
     author: 'Author11',
     photoLink: 'site/photo.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -145,7 +145,7 @@ var photoPosts = [{
 }, {
     id: '12',
     description: 'description12',
-    createdAt: new Date(2018, 3, 14),
+    createdAt: new Date(2018,3,14),
     author: 'Author12',
     photoLink: 'site/photo.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -158,7 +158,7 @@ var photoPosts = [{
 }, {
     id: '13',
     description: 'description13',
-    createdAt: new Date(2018, 3, 13),
+    createdAt: new Date(2018,3,13),
     author: 'Author13',
     photoLink: 'site/photo.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -171,7 +171,7 @@ var photoPosts = [{
 }, {
     id: '14',
     description: 'description14',
-    createdAt: new Date(2018, 3, 12),
+    createdAt: new Date(2018,3,12),
     author: 'Author14',
     photoLink: 'site/photo.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -184,7 +184,7 @@ var photoPosts = [{
 }, {
     id: '15',
     description: 'description15',
-    createdAt: new Date(2018, 3, 11),
+    createdAt: new Date(2018,3,11),
     author: 'Author15',
     photoLink: 'site/photo.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -197,7 +197,7 @@ var photoPosts = [{
 }, {
     id: '16',
     description: 'description16',
-    createdAt: new Date(2018, 3, 10),
+    createdAt: new Date(2018,3,10),
     author: 'Author16',
     photoLink: 'site/photo.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -210,7 +210,7 @@ var photoPosts = [{
 }, {
     id: '17',
     description: 'description17',
-    createdAt: new Date(2018, 3, 9),
+    createdAt: new Date(2018,3,9),
     author: 'Author17',
     photoLink: 'site/photo10.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -223,7 +223,7 @@ var photoPosts = [{
 }, {
     id: '18',
     description: 'description18',
-    createdAt: new Date(2018, 3, 8),
+    createdAt: new Date(2018,3,8),
     author: 'Author18',
     photoLink: 'site/photo7.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -236,7 +236,7 @@ var photoPosts = [{
 }, {
     id: '19',
     description: 'description19',
-    createdAt: new Date(2018, 3, 7),
+    createdAt: new Date(2018,3,7),
     author: 'Author19',
     photoLink: 'site/photo6.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -249,7 +249,7 @@ var photoPosts = [{
 }, {
     id: '20',
     description: 'description20',
-    createdAt: new Date(2018, 3, 6),
+    createdAt: new Date(2018,3,6),
     author: 'Author20',
     photoLink: 'site/photo5.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -269,8 +269,8 @@ var moduleEvents = (function() {
             // }];
             // localStorage.setItem('users', JSON.stringify(user));
             // localStorage.setItem('posts', JSON.stringify(photoPosts));
-             var posts = [];
-           var user = JSON.parse(localStorage.getItem('users'));
+            var posts = [];
+            var user = JSON.parse(localStorage.getItem('users'));
             for (var item = 0; item < JSON.parse(localStorage.getItem('posts')).length; item++) {
                 if (JSON.parse(localStorage.getItem('posts'))[item]) {
                     posts.push(JSON.parse(localStorage.getItem('posts'))[item]);
@@ -291,6 +291,7 @@ var moduleEvents = (function() {
             }
             return post.likes;
         }
+
         function authorization() {
             var user = JSON.parse(localStorage.getItem('users'));
             var posts = JSON.parse(localStorage.getItem('posts'));
@@ -310,6 +311,7 @@ var moduleEvents = (function() {
             );
 
         }
+
         function getIndex(id, photoPosts) {
             for (var index = 0; index < photoPosts.length; index++) {
                 if (photoPosts[index].id === id) {
@@ -392,6 +394,7 @@ var moduleEvents = (function() {
                 }
             });
         }
+
         function filter() {
             document.getElementById('button_search').addEventListener('click', ()=>{
                     var username = document.search.username.value;
