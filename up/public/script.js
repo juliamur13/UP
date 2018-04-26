@@ -1,166 +1,4 @@
 'use strict';
-// var photoPosts = [{
-//     id: '1',
-//     description: 'd1',
-//     createdAt: new Date('2018-02-23T23:00:00'),
-//     author: 'A1',
-//     photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-//     hashTags: ['h1', 'h5', 'h3', 'h4'],
-//     likes: ['l2', 'l1', 'l3']
-// }, {
-//     id: '2',
-//     description: 'd2',
-//     createdAt: new Date('2018-02-23T23:00:00'),
-//     author: 'A2',
-//     photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-//     hashTags: ['h3', 'h1', 'h2', 'h4'],
-//     likes: ['l2', 'l1', 'l3']
-// }, {
-//     id: '3',
-//     description: '',
-//     createdAt: new Date('2018-02-23T23:00:00'),
-//     author: 'A3',
-//     photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-//     hashTags: ['h1', 'h5', 'h3', 'h4'],
-//     likes: ['l2', 'l1', 'l3']
-// }, {
-//     id: '4',
-//     description: 'd4',
-//     createdAt: new Date('2018-02-23T23:00:00'),
-//     author: 'A4',
-//     photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-//     hashTags: ['h1', 'h5', 'h3', 'h4'],
-//     likes: ['l2', 'l1', 'l3']
-// }, {
-//     id: '5',
-//     description: 'd5',
-//     createdAt: new Date('2018-02-23T23:00:00'),
-//     author: 'A5',
-//     photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-//     hashTags: ['h1', 'h5', 'h3', 'h4'],
-//     likes: ['l2', 'l1', 'l3']
-// }, {
-//     id: '6',
-//     description: 'd6',
-//     createdAt: new Date('2018-02-23T23:00:00'),
-//     author: 'A6',
-//     photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-//     hashTags: ['h1', 'h5', 'h3', 'h4'],
-//     likes: ['l2', 'l1', 'l3']
-// }, {
-//     id: '7',
-//     description: 'd7',
-//     createdAt: new Date('2018-02-23T23:00:00'),
-//     author: 'A7',
-//     photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-//     hashTags: ['h1', 'h5', 'h3', 'h4'],
-//     likes: ['l2', 'l1', 'l3']
-// }, {
-//     id: '8',
-//     description: 'd8',
-//     createdAt: new Date('2018-02-23T23:00:00'),
-//     author: 'A8',
-//     photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-//     hashTags: ['h1', 'h5', 'h3', 'h4'],
-//     likes: ['l2', 'l1', 'l3']
-// }, {
-//     id: '9',
-//     description: 'd9',
-//     createdAt: new Date('2018-02-23T23:00:00'),
-//     author: 'A9',
-//     photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-//     hashTags: ['h1', 'h5', 'h3', 'h4'],
-//     likes: ['l2', 'l1', 'l3']
-// }, {
-//     id: '10',
-//     description: 'd10',
-//     createdAt: new Date('2018-02-23T23:00:00'),
-//     author: 'A10',
-//     photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-//     hashTags: ['h1', 'h5', 'h3', 'h4'],
-//     likes: ['l2', 'l1', 'l3']
-// }, {
-//     id: '11',
-//     description: 'd11',
-//     createdAt: new Date('2018-02-23T23:00:00'),
-//     author: 'A11',
-//     photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-//     hashTags: ['h1', 'h5', 'h3', 'h4'],
-//     likes: ['l2', 'l1', 'l3']
-// }, {
-//     id: '12',
-//     description: 'd12',
-//     createdAt: new Date('2018-02-23T23:00:00'),
-//     author: 'A12',
-//     photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-//     hashTags: ['h1', 'h5', 'h3', 'h4'],
-//     likes: ['l2', 'l1', 'l3']
-// }, {
-//     id: '13',
-//     description: 'd13',
-//     createdAt: new Date('2018-02-23T23:00:00'),
-//     author: 'A13',
-//     photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-//     hashTags: ['h1', 'h5', 'h3', 'h4'],
-//     likes: ['l2', 'l1', 'l3']
-// }, {
-//     id: '14',
-//     description: 'd14',
-//     createdAt: new Date('2018-02-23T23:00:00'),
-//     author: 'A14',
-//     photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-//     hashTags: ['h1', 'h5', 'h3', 'h4'],
-//     likes: ['l2', 'l1', 'l3']
-// }, {
-//     id: '15',
-//     description: 'd15',
-//     createdAt: new Date('2018-02-23T23:00:00'),
-//     author: 'A15',
-//     photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-//     hashTags: ['h1', 'h5', 'h3', 'h4'],
-//     likes: ['l2', 'l1', 'l3']
-// }, {
-//     id: '16',
-//     description: 'd16',
-//     createdAt: new Date('2018-02-23T23:00:00'),
-//     author: 'A16',
-//     photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-//     hashTags: ['h1', 'h5', 'h3', 'h4'],
-//     likes: ['l2', 'l1', 'l3']
-// }, {
-//     id: '17',
-//     description: 'd17',
-//     createdAt: new Date('2018-02-23T23:00:00'),
-//     author: 'A17',
-//     photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-//     hashTags: ['h1', 'h5', 'h3', 'h4'],
-//     likes: ['l2', 'l1', 'l3']
-// }, {
-//     id: '18',
-//     description: 'd18',
-//     createdAt: new Date('2018-02-23T23:00:00'),
-//     author: 'A18',
-//     photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-//     hashTags: ['h1', 'h5', 'h3', 'h4'],
-//     likes: ['l2', 'l1', 'l3']
-// }, {
-//     id: '19',
-//     description: 'd19',
-//     createdAt: new Date('2018-02-23T23:00:00'),
-//     author: 'A19',
-//     photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-//     hashTags: ['h1', 'h5', 'h3', 'h4'],
-//     likes: ['l2', 'l1', 'l3']
-// }, {
-//     id: '20',
-//     description: 'd20',
-//     createdAt: new Date('2018-02-23T23:00:00'),
-//     author: 'A20',
-//     photoLink: 'http://ont.by/webroot/delivery/files/news/2018/02/22/Dom.jpg',
-//     hashTags: ['h1', 'h5', 'h3', 'h4'],
-//     likes: ['l2', 'l1', 'l3']
-// }
-// ];
 var moduleScript = (function() {
 
     function validatePhotoPost(photoPost) {
@@ -194,10 +32,6 @@ var moduleScript = (function() {
         return true;
     }
 
-    function compareDate(a, b) {
-        return (a.createdAt) - (b.createdAt);
-    }
-
     function filterAuthor(photoPosts, author) {
         var result = [];
         for (var index = 0; index < photoPosts.length; index++) {
@@ -218,10 +52,18 @@ var moduleScript = (function() {
         return result;
     }
 
+    function compareDate(a, b) {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+    }
+    function sortPostsByDate(posts) {
+        posts.sort(compareDate);
+        return posts;
+    }
     function getPhotoPosts(filterConfig, photoPosts) {
         var resultArray = [];
+        photoPosts = sortPostsByDate(photoPosts);
         if (filterConfig === undefined) {
-            return photoPosts.sort(compareDate);
+            return photoPosts;
         } else {
             resultArray = photoPosts.sort(compareDate);
             if (filterConfig.author !== '') {
@@ -230,14 +72,16 @@ var moduleScript = (function() {
             if (filterConfig.hashTag !== '') {
                 resultArray = filterHashtag(resultArray, filterConfig.hashTag);
             }
+            if (filterConfig.createdAt !== '') {
+                resultArray = photoPosts.filter((element)=>new Date(element.createdAt).toLocaleDateString() === filterConfig.createdAt);
+            }
         }
         return resultArray;
     }
 
-    function removePhotoPost(id) {
+    function removePhotoPost(photoPosts, id) {
         for (var i in photoPosts) {
             if (photoPosts[i].id === id) {
-                return true;
             }
         }
         return false;
@@ -250,10 +94,10 @@ var moduleScript = (function() {
         }
         return false;
     }
-    function getPhotoPost(id) {
-        for (var i in photoPosts) {
-            if (photoPosts[i].id === id) {
-                return photoPosts[i];
+    function getPhotoPost(id, photoPosts) {
+        for (var index = 0; index < photoPosts.length; index++) {
+            if (photoPosts[index].id === id) {
+                return photoPosts[index];
             }
         }
     }
@@ -285,7 +129,8 @@ var moduleScript = (function() {
         getPhotoPost: getPhotoPost,
         addPhotoPost: addPhotoPost,
         getPhotoPosts: getPhotoPosts,
-        removePhotoPost: removePhotoPost
+        removePhotoPost: removePhotoPost,
+        sortPostsByDate: sortPostsByDate
     }
 
 }());
