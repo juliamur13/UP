@@ -1,30 +1,8 @@
 'use strict';
-var moduleDOM = (function() {
-
-    function editPhotoPost(id, photoPost) {
-        var index = photoPosts.findIndex((element)=>element.id === id);
-        if (index !== -1) {
-            if (photoPost.description !== undefined && photoPost.description.length !== 0) {
-                document.getElementsByClassName('description_text')[index].textContent = photoPost.description;
-                photoPosts[index].description = photoPost.description;
-            }
-            if (photoPost.hashTags !== undefined && photoPost.hashTags.length !== 0) {
-                document.getElementsByClassName('hashTag_text')[index].textContent = photoPost.hashTags;
-                photoPosts[index].hashTags = photoPost.hashTags;
-            }
-            if (photoPost.likes !== undefined && photoPost.likes.length !== 0) {
-                document.getElementsByClassName('likes_text')[index].textContent = photoPost.likes;
-                photoPosts[photoPosts.length - index - 1].likes = photoPost.likes;
-            }
-            if (photoPost.photoLink !== undefined && photoPost.photoLink.length !== 0) {
-                document.getElementsByClassName('photo')[index].src = photoPost.photoLink;
-                photoPosts[index].photoLink = photoPost.photoLink;
-            }
-        }
-    }
+var moduleDOM = (function () {
 
     function removePhotoPost(posts, id) {
-        var index = photoPosts.findIndex((element)=>element.id === id);
+        var index = photoPosts.findIndex((element) => element.id === id);
         if (index != -1) {
             //document.querySelector('.post[data-post-id="' + id + '"]').classList.add('hide');
             posts.splice(id - 1, 1);
@@ -33,19 +11,33 @@ var moduleDOM = (function() {
     }
 
     function controlPost(photoPost, user) {
-        if (photoPost.author !== user) {
-            document.querySelector('.link_edit_delete').classList.add('hide');
-            document.querySelector('.link_edit').classList.add('hide');
+        var COUNT_CLASSES = 2;
+        var like = document.querySelector('.link_edit_like');
+        var remove = document.querySelector('.link_edit_delete');
+        var input = document.querySelector('.text');
+        var edit = document.querySelector('.link_edit');
+        if (photoPost.author !== user && like.classList.length !== COUNT_CLASSES) {
+            remove.classList.add('hide');
+            edit.classList.add('hide');
         }
-        if (user === '') {
-            document.querySelector('.text').classList.add('hide');
-            document.querySelector('.link_edit_like').classList.add('hide');
+        if (!user && like.classList.length !== COUNT_CLASSES) {
+            input.classList.add('hide');
+            like.classList.add('hide');
         }
-        for (var index = 0; index < photoPost.likes.length; index++) {
-            if (photoPost.likes[index] === user) {
+        if (user && like.classList.length === COUNT_CLASSES) {
+            like.classList.remove('.hide');
+            input.classList.remove('hide');
+            if (user === photoPost.author) {
+                edit.classList.remove('.hide');
+                remove.classList.remove('.hide')
+            }
+        }
+        if (user) {
+            var index = photoPost.likes.findIndex((element) => element === user);
+            if (index !== -1) {
                 var post = document.querySelector('.button_edit_like');
                 post.src = 'site/like5.png';
-                console.log(document.getElementsByClassName('button_edit_like').src);
+                //console.log(document.getElementsByClassName('button_edit_like').src);
             }
         }
     }
@@ -57,55 +49,139 @@ var moduleDOM = (function() {
     }
 
     function controlUser(user) {
-        if (user === '') {
+        if (!user) {
             document.querySelector('.button_add_post').classList.add('hide');
             document.querySelector('.user').classList.add('hide');
+            document.querySelector('.button_exit').textContent = 'Вход';
         }
-        if (user !== '') {
+        if (user) {
             document.querySelector('.user').classList.remove('hide');
             document.querySelector('.user_name_text').textContent = user;
             document.querySelector('.user_text').textContent = '';
+            document.querySelector('.button_exit').textContent = 'Выход';
+        }
+    }
+
+    function controlPhotoPosts(photoPosts, user) {
+        for (var index = 0; index < photoPosts.length; index++) {
+            controlPost(photoPosts[index], user);
         }
     }
 
     function compareDate(a, b) {
         return new Date(a.createdAt) - new Date(b.createdAt);
     }
+
     function sortPostsByDate(posts) {
         posts.sort(compareDate);
         return posts;
     }
-    function controlSelector(photoPosts) {
-        for (var indexPosts = 0; indexPosts < photoPosts.length; indexPosts++) {
-            for (var indexComments = 0; indexComments < photoPosts[indexPosts].comments.length; indexComments++) {
-                addHashTagsSelect(moduleEvents.searchHashTags(photoPosts[indexPosts].comments[indexComments].comment));
-            }
-        }
+
+    // function controlSelector(photoPosts) {
+    //     for (var indexPosts = 0; indexPosts < photoPosts.length; indexPosts++) {
+    //         for (var indexComments = 0; indexComments < photoPosts[indexPosts].comments.length; indexComments++) {
+    //             addHashTagsSelect(moduleEvents.searchHashTags(photoPosts[indexPosts].comments[indexComments].comment));
+    //         }
+    //     }
+    // }
+
+    function removeButtonLoadMorePosts() {
+        document.querySelector('.button_add_more').classList.add('hide');
+    }
+
+    function messageNoPosts() {
+        var parentElement = document.querySelector('.photo_line');
+        var newElem = document.createElement('p');
+        newElem.className = 'message-no-posts';
+        newElem.innerHTML = 'Нет результатов';
+        parentElement.appendChild(newElem);
+        document.querySelector('.footer_logo').textContent = '';
     }
 
     function displayPhotoPosts(photoPosts, user, countElementsAdd) {
         controlUser(user);
-        controlSelector(photoPosts);
         var COUNT_ELEMENTS = 10;
         var countPostsDisplay;
         var countPostsHtml = document.getElementsByClassName('post').length;
+        var countPostsHtmlCopy = countPostsHtml;
         photoPosts = sortPostsByDate(photoPosts);
-        if (countElementsAdd === 0 && countPostsHtml === 0) {
-            countPostsDisplay = COUNT_ELEMENTS;
-        } else {
-            if (photoPosts.length < countElementsAdd + countPostsHtml) {
-                countPostsDisplay = photoPosts.length;
+        while (countPostsHtmlCopy) {
+            removeHtmlPost(document.getElementsByClassName('post')[0].getAttribute('data-post-id'));
+            countPostsHtmlCopy--;
+        }
+        if (photoPosts.length !== 0) {
+            if (countElementsAdd === 0 && countPostsHtml === 0) {
+                countPostsDisplay = COUNT_ELEMENTS;
             } else {
-                countPostsDisplay = countElementsAdd + countPostsHtml;
+                if (photoPosts.length < countElementsAdd + countPostsHtml) {
+                    countPostsDisplay = photoPosts.length;
+                } else {
+                    countPostsDisplay = countElementsAdd + countPostsHtml;
+                }
+            }
+            if (photoPosts.length - countPostsDisplay === 0) {
+                removeButtonLoadMorePosts();
+            }
+            for (var index = photoPosts.length - countPostsDisplay; index < photoPosts.length; index++) {
+                addPhotoPost(photoPosts[index], user);
             }
         }
-        while (countPostsHtml) {
-            removeHtmlPost(document.getElementsByClassName('post')[0].getAttribute('data-post-id'));
-            countPostsHtml--;
+        else {
+            if (!document.querySelector('.message-no-posts')) {
+                messageNoPosts();
+                removeButtonLoadMorePosts();
+            }
         }
-        for (var index = photoPosts.length - countPostsDisplay; index < photoPosts.length; index++) {
-            addPhotoPost(photoPosts[index], user);
+    }
+
+    function searchMaxId(photoPosts) {
+        var max = 0;
+        var id;
+        for (var index = 0; index < photoPosts.length; index++) {
+            id = photoPosts[index].id;
+            if (max < parseInt(id)) {
+                max = id;
+            }
         }
+        return max;
+    }
+
+    function searchHashTags(string) {
+        var newHashTag = '';
+        var arrNewHashTags = [];
+        var countHashTags = 0;
+        var countHashSymbols = 0;
+        var flag = false;
+        for (var index = 0; index < string.length; index++) {
+            if (string[index] === '#') {
+                flag = true;
+                countHashTags++;
+                countHashSymbols++;
+            }
+            if (flag) {
+                var check = string[index] === '#' && countHashSymbols > 1;
+                if (check) {
+                    countHashTags--;
+                }
+                if (!check && !(string[index] === ',') && !(string[index] === ' ')) {
+                    newHashTag = newHashTag + string[index];
+                }
+                if (string[index] === ' ' || index === string.length - 1 || string[index] === ',' || check) {
+
+                    arrNewHashTags[countHashTags - 1] = newHashTag;
+                    newHashTag = '';
+
+                    flag = false;
+                    countHashSymbols++;
+                    if (string[index] === '#' && countHashSymbols > 0) {
+                        index--;
+                    }
+                    countHashSymbols = 0;
+                }
+
+            }
+        }
+        return arrNewHashTags;
     }
 
     function addOptionToSelect(elementArr, select) {
@@ -139,13 +215,134 @@ var moduleDOM = (function() {
         }
     }
 
+    function errorAuthorization() {
+        var parentElement = document.querySelector('.inputs');
+        var newElem = document.createElement('p');
+        newElem.className = 'error-sign-up';
+        newElem.innerHTML = 'Вы ввели неправильный логин или пароль';
+        parentElement.appendChild(newElem);
+    }
+
+    function displayPageCreateNewPost(photoPost) {
+        displayPageEdit(photoPost);
+        var buttonCreatePost = document.querySelector('.button-edit-page');
+        buttonCreatePost.value = '  Добавить  ';
+        buttonCreatePost.classList.add('create');
+    }
+
+    function displayPageEdit(photoPost) {
+        document.querySelector('.pictures_space').classList.add('hide');
+        document.querySelector('.photo_line').classList.add('hide');
+        document.querySelector('.load_more').classList.add('hide');
+        document.querySelector('.header-line').classList.add('sign-up');
+        document.querySelector('.logo').classList.add('sign-up');
+        document.querySelector('main').classList.add('edit');
+        var newElement = document.createElement('div');
+        newElement.className = 'post page-edit';
+        newElement.setAttribute('data-post-id', photoPost.id);
+        newElement.innerHTML = `
+        <div class='user-column-edit'>
+                <div class='parent-user-edit'>
+                    <img class="user-photo-edit" src="site/avatar3.png"/>
+                    <p class="user-name-text-edit">${photoPost.author}</p>
+                    <p class="user-text-edit" contenteditable="true">Информация об авторизованном пользователе</p>
+                </div>
+        </div>
+        <div class='post-column'>
+            <div class="user_panel page-edit">
+                 <div>
+                    <p class="user_name_text_post" > 
+                    <img class="user_name_photo_post" src="site/user.png" />${photoPost.author}</p>
+                 </div>
+            </div>
+            <div class="photopost">
+                <div class="user_photopost">
+                    <a><img class="photo" src='site/photo24.jpg' /></a>
+                    <p class="date_post">${new Date(Date.now()).toLocaleDateString()}</p>
+                    <div class="description">
+                        <p class="description-text-edit" contenteditable="true">${photoPost.description} </p>
+                        <p class="hashTag-text-edit" contenteditable="true">${photoPost.hashTags}</p>
+                        <p class="likes_text">${photoPost.likes}</p>                  
+                    </div>
+                </div>
+                <form class="block-edit">
+                        <input type="button" class="button-edit-page" value=" Редактировать "/>
+                </form>
+            </div>
+            <div class='space-column'>
+            </div>
+        </div>
+        `;
+        document.querySelector('main').appendChild(newElement);
+    }
+
+    function removePageEdit() {
+        document.querySelector('.pictures_space').classList.remove('hide');
+        document.querySelector('.photo_line').classList.remove('hide');
+        document.querySelector('.load_more').classList.remove('hide');
+        document.querySelector('.header-line').classList.remove('sign-up');
+        document.querySelector('.logo').classList.remove('sign-up');
+        document.querySelector('main').classList.remove('edit');
+        document.querySelector('main').removeChild(document.querySelector('.post.page-edit'));
+    }
+
+    function removePageSignUp() {
+        document.querySelector('.header-line').classList.remove('sign-up');
+        document.querySelector('.logo').classList.remove('sign-up');
+        document.querySelector('header').classList.remove('sign-up');
+        document.querySelector('main').classList.remove('sign-up');
+        document.querySelector('body').classList.remove('sign-up');
+        document.querySelector('.footer_line').classList.remove('sign-up');
+        document.querySelector('.button_add_post').classList.remove('hide');
+        document.querySelector('.button_exit').textContent = 'Выход';
+        document.querySelector('.footer_logo').textContent = 'D & W';
+        document.querySelector('.pictures_space').classList.remove('hide');
+        document.querySelector('.photo_line').classList.remove('hide');
+        document.querySelector('.load_more').classList.remove('hide');
+        document.querySelector('main').removeChild(document.querySelector('.log-in'));
+    }
+
+    function displaySignUp() {
+        document.querySelector('.header-line').classList.add('sign-up');
+        document.querySelector('.logo').classList.add('sign-up');
+        document.querySelector('header').classList.add('sign-up');
+        document.querySelector('main').classList.add('sign-up');
+        document.querySelector('body').classList.add('sign-up');
+        document.querySelector('.footer_line').classList.add('sign-up');
+        document.querySelector('.button_add_post').classList.add('hide');
+        document.querySelector('.button_exit').textContent = 'Авторизация';
+        document.querySelector('.footer_logo').textContent = '';
+        document.querySelector('.pictures_space').classList.add('hide');
+        document.querySelector('.photo_line').classList.add('hide');
+        document.querySelector('.load_more').classList.add('hide');
+        var newElem = document.createElement('div');
+        newElem.className = 'log-in';
+        newElem.innerHTML = `
+        <div class='block-inputs-sign-up'>
+            <div class='inputs'>
+                <p class='text-sign-up'>Введите логин</p>
+                <input name='username' id='username' >
+                <p class='text-sign-up'>Введите пароль</p>
+                <input name='password' id='password'>
+                <div class='block-sign-up'>
+                    <input type="button" class='button-sign-up' value="     Вход    "/>
+                </div>
+            </div>
+        </div>
+        <div class='block-image-sign-up'>
+           <img class='image-sign-up' src='site/signUp.jpg' />
+        </div>
+        `;
+        document.querySelector('main').appendChild(newElem);
+    }
+
     function addPhotoPost(photoPost, user) {
         var posts = document.querySelector('.all_posts');
         var firstElem = document.getElementsByClassName('post')[0];
         var newElem = document.createElement('div');
         newElem.className = 'post';
         newElem.setAttribute('data-post-id', photoPost.id);
-        let commentsArr = (photoPost.comments || []).map(comment=>`
+        let commentsArr = (photoPost.comments || []).map(comment => `
         <div class="comments_text">
             <p class="user_name_comments"><img class="user_comments_photo" src=${comment.authorPhoto}>${comment.author}</p>
             <p class ="comment">${comment.comment}</p>
@@ -165,10 +362,10 @@ var moduleDOM = (function() {
         </div>
         <div class="photopost">
             <div class="user_photopost">
-                <img class="photo" src=${photoPost.photoLink}><p class="date_post">${new Date(photoPost.createdAt).toLocaleDateString()}</p>
+                <img class="photo" src=${photoPost.photoLink} /><p class="date_post">${new Date(photoPost.createdAt).toLocaleDateString()}</p>
                 <div class="description">
-                    <p class="description_text">${photoPost.description}</p>
-                    <p class="hashTag_text">${photoPost.hashTags}</p>
+                    <p class="description-text">${photoPost.description}</p>
+                    <p class="hashTag-text">${photoPost.hashTags}</p>
                     <p class="likes_text">${photoPost.likes}</p>
                 </div>
             </div>
@@ -194,13 +391,21 @@ var moduleDOM = (function() {
 
     return {
         removePhotoPost: removePhotoPost,
-        editPhotoPost: editPhotoPost,
         addPhotoPost: addPhotoPost,
         displayPhotoPosts: displayPhotoPosts,
         addHashTagsSelect: addHashTagsSelect,
         controlUser: controlUser,
         addComment: addComment,
-        removeHtmlPost: removeHtmlPost
+        removeHtmlPost: removeHtmlPost,
+        searchHashTags: searchHashTags,
+        displaySignUp: displaySignUp,
+        errorAuthorization: errorAuthorization,
+        removePageSignUp: removePageSignUp,
+        controlPhotoPosts: controlPhotoPosts,
+        displayPageEdit: displayPageEdit,
+        removePageEdit: removePageEdit,
+        displayPageCreateNewPost: displayPageCreateNewPost,
+        searchMaxId: searchMaxId
     }
 
 }());

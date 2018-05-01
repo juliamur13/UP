@@ -2,8 +2,8 @@
 var photoPosts = [{
     id: '1',
     description: 'description1',
-    createdAt: new Date(2018,3,25),
-    author: 'Author1',
+    createdAt: new Date(2018, 3, 25),
+    author: 'Author20',
     photoLink: 'site/photo2.jpg',
     hashTags: ['#roses', '#flowers', '#plant'],
     likes: ['like2', 'like1', 'like3'],
@@ -15,7 +15,7 @@ var photoPosts = [{
 }, {
     id: '2',
     description: 'description2',
-    createdAt: new Date(2018,3,24),
+    createdAt: new Date(2018, 3, 24),
     author: 'Author2',
     photoLink: 'site/photo3.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -28,7 +28,7 @@ var photoPosts = [{
 }, {
     id: '3',
     description: 'description3',
-    createdAt: new Date(2018,3,23),
+    createdAt: new Date(2018, 3, 23),
     author: 'Author3',
     photoLink: 'site/photo4.jpg',
     hashTags: ['#hashTag2', '#hashTag1', '#hashTag3'],
@@ -41,7 +41,7 @@ var photoPosts = [{
 }, {
     id: '4',
     description: 'description4',
-    createdAt: new Date(2018,3,22),
+    createdAt: new Date(2018, 3, 22),
     author: 'Author4',
     photoLink: 'site/photo5.jpg',
     hashTags: ['#hashTag10', '#hashTag20', '#hashTag30'],
@@ -54,7 +54,7 @@ var photoPosts = [{
 }, {
     id: '5',
     description: 'description5',
-    createdAt: new Date(2018,3,21),
+    createdAt: new Date(2018, 3, 21),
     author: 'Author5',
     photoLink: 'site/photo3.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -67,7 +67,7 @@ var photoPosts = [{
 }, {
     id: '6',
     description: 'description6',
-    createdAt: new Date(2018,3,20),
+    createdAt: new Date(2018, 3, 20),
     author: 'Author6',
     photoLink: 'site/photo6.jpg',
     hashTags: ['#hashTag2', '#hashTag1', '#hashTag3'],
@@ -80,7 +80,7 @@ var photoPosts = [{
 }, {
     id: '7',
     description: 'description7',
-    createdAt: new Date(2018,3,19),
+    createdAt: new Date(2018, 3, 19),
     author: 'Author7',
     photoLink: 'site/photo7.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -93,7 +93,7 @@ var photoPosts = [{
 }, {
     id: '8',
     description: 'description8',
-    createdAt: new Date(2018,3,18),
+    createdAt: new Date(2018, 3, 18),
     author: 'Author8',
     photoLink: 'site/photo8.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -106,7 +106,7 @@ var photoPosts = [{
 }, {
     id: '9',
     description: 'description9',
-    createdAt: new Date(2018,3,17),
+    createdAt: new Date(2018, 3, 17),
     author: 'Author9',
     photoLink: 'site/photo10.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -119,7 +119,7 @@ var photoPosts = [{
 }, {
     id: '10',
     description: 'description10',
-    createdAt: new Date(2018,3,16),
+    createdAt: new Date(2018, 3, 16),
     author: 'Author10',
     photoLink: 'site/photo11.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -132,7 +132,7 @@ var photoPosts = [{
 }, {
     id: '11',
     description: 'description11',
-    createdAt: new Date(2018,3,15),
+    createdAt: new Date(2018, 3, 15),
     author: 'Author11',
     photoLink: 'site/photo.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -145,7 +145,7 @@ var photoPosts = [{
 }, {
     id: '12',
     description: 'description12',
-    createdAt: new Date(2018,3,14),
+    createdAt: new Date(2018, 3, 14),
     author: 'Author12',
     photoLink: 'site/photo.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -158,7 +158,7 @@ var photoPosts = [{
 }, {
     id: '13',
     description: 'description13',
-    createdAt: new Date(2018,3,13),
+    createdAt: new Date(2018, 3, 13),
     author: 'Author13',
     photoLink: 'site/photo.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -171,7 +171,7 @@ var photoPosts = [{
 }, {
     id: '14',
     description: 'description14',
-    createdAt: new Date(2018,3,12),
+    createdAt: new Date(2018, 3, 12),
     author: 'Author14',
     photoLink: 'site/photo.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -184,7 +184,7 @@ var photoPosts = [{
 }, {
     id: '15',
     description: 'description15',
-    createdAt: new Date(2018,3,11),
+    createdAt: new Date(2018, 3, 11),
     author: 'Author15',
     photoLink: 'site/photo.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -197,7 +197,7 @@ var photoPosts = [{
 }, {
     id: '16',
     description: 'description16',
-    createdAt: new Date(2018,3,10),
+    createdAt: new Date(2018, 3, 10),
     author: 'Author16',
     photoLink: 'site/photo.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -210,7 +210,7 @@ var photoPosts = [{
 }, {
     id: '17',
     description: 'description17',
-    createdAt: new Date(2018,3,9),
+    createdAt: new Date(2018, 3, 9),
     author: 'Author17',
     photoLink: 'site/photo10.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -223,7 +223,7 @@ var photoPosts = [{
 }, {
     id: '18',
     description: 'description18',
-    createdAt: new Date(2018,3,8),
+    createdAt: new Date(2018, 3, 8),
     author: 'Author18',
     photoLink: 'site/photo7.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -236,7 +236,7 @@ var photoPosts = [{
 }, {
     id: '19',
     description: 'description19',
-    createdAt: new Date(2018,3,7),
+    createdAt: new Date(2018, 3, 7),
     author: 'Author19',
     photoLink: 'site/photo6.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -249,7 +249,7 @@ var photoPosts = [{
 }, {
     id: '20',
     description: 'description20',
-    createdAt: new Date(2018,3,6),
+    createdAt: new Date(2018, 3, 6),
     author: 'Author20',
     photoLink: 'site/photo5.jpg',
     hashTags: ['#hashTag1', '#hashTag2', '#hashTag3'],
@@ -260,30 +260,34 @@ var photoPosts = [{
         comment: 'Комментарий'
     }]
 }];
-var moduleEvents = (function() {
+var moduleEvents = (function () {
 
         function addPhotoPosts() {
-            // var user = [{
-            //     username: 'Author20',
-            //     password: '1111'
-            // }];
-            // localStorage.setItem('users', JSON.stringify(user));
-            // localStorage.setItem('posts', JSON.stringify(photoPosts));
+            var users = [{
+                username: 'Author20',
+                password: '1111',
+                logIn: true,
+                photo: 'site/avatar3.png',
+                information: 'Информация об авторизованном пользователе'
+            }];
+            localStorage.setItem('users', JSON.stringify(users));
+            var user = null;
+            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('posts', JSON.stringify(photoPosts));
             var posts = [];
-            var user = JSON.parse(localStorage.getItem('users'));
             for (var item = 0; item < JSON.parse(localStorage.getItem('posts')).length; item++) {
                 if (JSON.parse(localStorage.getItem('posts'))[item]) {
                     posts.push(JSON.parse(localStorage.getItem('posts'))[item]);
                 }
             }
-            moduleDOM.displayPhotoPosts(posts, user[0].username, 0);
+            moduleDOM.displayPhotoPosts(posts, user, 0);
         }
 
         function like(post, target) {
-            var user = JSON.parse(localStorage.getItem('users'));
-            var index = post.likes.findIndex((element)=>element === user[0].username);
+            var user = JSON.parse(localStorage.getItem('user'));
+            var index = post.likes.findIndex((element) => element === user);
             if (index === -1) {
-                post.likes.push(user[0].username);
+                post.likes.push(user);
                 target.src = 'site/like5.png';
             } else {
                 post.likes.splice(index, 1);
@@ -292,24 +296,159 @@ var moduleEvents = (function() {
             return post.likes;
         }
 
-        function authorization() {
-            var user = JSON.parse(localStorage.getItem('users'));
-            var posts = JSON.parse(localStorage.getItem('posts'));
-            document.querySelector('.right_header').addEventListener('click', (event)=>{
-                    var target = event.target;
-                    if (target.innerHTML === 'Выход') {
-                        target.innerHTML = 'Вход';
-                        user[0].username = '';
-                    } else {
-                        target.innerHTML = 'Выход';
-                        user[0].username = 'Author20';
-
-                    }
-                    moduleDOM.controlUser(user[0].username);
-                    localStorage.setItem('posts', JSON.stringify(posts));
+        function buttonEditPhoto() {
+            document.querySelector('main').addEventListener('click', (event) => {
+                var target = event.target;
+                if (target.className === 'photo') {
+                    target.src = 'site/photo19.jpg';
                 }
-            );
+            });
+        }
 
+        function buttonEditDescription() {
+            document.querySelector('main').addEventListener('click', (event) => {
+                var user = JSON.parse(localStorage.getItem('user'));
+                var target = event.target;
+                if (target.className === 'button-edit-page') {
+                    var photoPosts = JSON.parse(localStorage.getItem('posts'));
+                    var description = document.querySelector('.description-text-edit').innerHTML;
+                    var hashTags = document.querySelector('.hashTag-text-edit').innerHTML;
+                    // var userInfo = document.querySelector('.user-text-edit').innerHTML;
+                    var id = target.closest('.post.page-edit').getAttribute('data-post-id');
+                    var arrHashTags = moduleDOM.searchHashTags(hashTags);
+                    moduleDOM.addHashTagsSelect(arrHashTags);
+                    var indexPost = getIndex(id.toString(), photoPosts);
+                    var checkIndex = 0;
+                    photoPosts[indexPost].description = description;
+                    photoPosts[indexPost].photoLink = 'site/photo19.jpg';
+                    photoPosts[indexPost].createdAt = Date.now();
+                    for (var index = 0; index < arrHashTags.length; index++) {
+                        checkIndex = photoPosts[indexPost].hashTags.findIndex((element) => element === arrHashTags[index]);
+                        if (checkIndex === -1) {
+                            photoPosts[indexPost].hashTags.push(arrHashTags[index]);
+                        }
+                    }
+                    localStorage.setItem('posts', JSON.stringify(photoPosts));
+                    moduleDOM.removePageEdit();
+                    moduleDOM.displayPhotoPosts(photoPosts, user, 0);
+                }
+            });
+        }
+
+        function buttonCreateNewPost() {
+            document.querySelector('header').addEventListener('click', (event) => {
+                var target = event.target;
+                if (target.className === 'button_add_post' && !document.querySelector('main').contains(document.querySelector('.post.page-edit'))) {
+                    var photoPosts = JSON.parse(localStorage.getItem('posts'));
+                    var id = (parseInt(moduleDOM.searchMaxId(photoPosts)) + 1).toString();
+                    var user = JSON.parse(localStorage.getItem('user'));
+                    var photoPost = {
+                        id: id,
+                        description: 'Добавить подпись...',
+                        createdAt: Date.now(),
+                        author: user.toString(),
+                        photoLink: 'site/photo24.jpg',
+                        hashTags: ['Добавить хештеги...'],
+                        likes: [],
+                        comments: []
+                    };
+                    moduleDOM.displayPageCreateNewPost(photoPost);
+                }
+            });
+        }
+
+        function buttonAddNewPostPageEdit() {
+            document.querySelector('main').addEventListener('click', (event) => {
+
+                var target = event.target;
+                if (target.className === 'button-edit-page create') {
+                    var photoPosts = JSON.parse(localStorage.getItem('posts'));
+                    var description = document.querySelector('.description-text-edit').innerHTML;
+                    var hashTags = document.querySelector('.hashTag-text-edit').innerHTML;
+                    var photoLink = 'site/photo7.jpg';
+                    var id = target.closest('.post.page-edit').getAttribute('data-post-id');
+                    var user = JSON.parse(localStorage.getItem('user'));
+                    var arrHashTags = moduleDOM.searchHashTags(hashTags);
+                    moduleDOM.addHashTagsSelect(arrHashTags);
+                    var photoPost = {
+                        id: id,
+                        description: description,
+                        createdAt: Date.now(),
+                        author: user,
+                        photoLink: photoLink,
+                        hashTags: arrHashTags,
+                        likes: [],
+                        comments: []
+                    };
+                    photoPosts.push(photoPost);
+                    localStorage.setItem('posts', JSON.stringify(photoPosts));
+                    moduleDOM.removePageEdit();
+                    moduleDOM.displayPhotoPosts(photoPosts, user, 0);
+                }
+            });
+        }
+
+        function getUser(name) {
+            var users = JSON.parse(localStorage.getItem('users'));
+            return (users.find((user) => {
+                return user.username === name;
+            }));
+        }
+
+        function getPassword(name) {
+            var users = JSON.parse(localStorage.getItem('users'));
+            var index = users.findIndex((element) => element.username === name);
+            if (index != -1) {
+                return users[index].password;
+            }
+        }
+
+        function buttonPageWithPosts() {
+            document.querySelector('.logo').addEventListener('click', (event) => {
+                var target = event.target;
+                var user = JSON.parse(localStorage.getItem('user'));
+                var COUNT_CLASSES = 2;
+                if (target.classList.length === COUNT_CLASSES) {
+                    moduleDOM.removePageSignUp();
+                    moduleDOM.displayPhotoPosts(photoPosts, user, 0);
+                }
+            });
+        }
+
+
+        function authorization() {
+            var buttonExit = document.querySelector('.button_exit');
+            buttonExit.addEventListener('click', (event) => {
+                if (!document.querySelector('main').contains(document.querySelector('.post.page-edit'))) {
+                    var user = JSON.parse(localStorage.getItem('user'));
+                    if (buttonExit.textContent === 'Вход') {
+                        moduleDOM.displaySignUp();
+                    }
+                    if (buttonExit.textContent === 'Авторизация') {
+                        document.querySelector('.button-sign-up').addEventListener('click', (event) => {
+                            var username = document.getElementById('username').value;
+                            var password = document.getElementById('password').value;
+                            var photoPosts = JSON.parse(localStorage.getItem('posts'));
+                            if (getUser(username) && getPassword(username) === password) {
+                                moduleDOM.controlUser(username);
+                                localStorage.setItem('user', JSON.stringify(username));
+                                moduleDOM.removePageSignUp();
+                                moduleDOM.displayPhotoPosts(photoPosts, username, 0);
+                            }
+                            else {
+                                moduleDOM.errorAuthorization();
+                            }
+                            event.preventDefault();
+                        });
+                        event.preventDefault();
+                    }
+                    if (buttonExit.textContent === 'Выход') {
+                        moduleDOM.displaySignUp();
+                        user = null;
+                        localStorage.setItem('user', user);
+                    }
+                }
+            });
         }
 
         function getIndex(id, photoPosts) {
@@ -321,82 +460,60 @@ var moduleEvents = (function() {
         }
 
         function buttonsPost() {
-            var posts = JSON.parse(localStorage.getItem('posts'));
-            document.querySelector('.all_posts').addEventListener('click', (event)=>{
+
+            document.querySelector('.all_posts').addEventListener('click', (event) => {
+                    var photoPosts = JSON.parse(localStorage.getItem('posts'));
                     var target = event.target;
                     var id = target.closest('.post').getAttribute('data-post-id');
-                    var indexPost = getIndex(id.toString(), posts);
-                    if (target.className === 'button_edit_like' && posts[indexPost]) {
-                        posts[indexPost].likes = like(posts[indexPost], target);
+                    var indexPost = getIndex(id.toString(), photoPosts);
+                    if (target.className === 'button_edit_like' && photoPosts[indexPost]) {
+                        photoPosts[indexPost].likes = like(photoPosts[indexPost], target);
                     }
-                    if (target.className === 'button_edit_delete' && posts[indexPost]) {
-                        posts = moduleDOM.removeHtmlPost(id);
+                    if (target.className === 'button_edit_delete' && photoPosts[indexPost]) {
+                        photoPosts = moduleDOM.removeHtmlPost(id);
                     }
-                    // if (targetCopy.className === 'button_edit' && post) {
-                    // }
-                    localStorage.setItem('posts', JSON.stringify(posts));
+                    if (target.className === 'button_edit' && photoPosts[indexPost]) {
+                        moduleDOM.displayPageEdit(photoPosts[indexPost]);
+                    }
+                    localStorage.setItem('posts', JSON.stringify(photoPosts));
                 }
             );
         }
 
         function buttonLoadMorePosts() {
-            var user = JSON.parse(localStorage.getItem('users'));
-            var posts = JSON.parse(localStorage.getItem('posts'));
-            document.querySelector('.add_more').addEventListener('click', function() {
-                moduleDOM.displayPhotoPosts(posts, user[0].username, 10);
+            document.querySelector('.load_more').addEventListener('click', function (event) {
+                var target = event.target;
+                var user = JSON.parse(localStorage.getItem('user'));
+                var posts = JSON.parse(localStorage.getItem('posts'));
+                if (target.className === 'add_more') {
+                    moduleDOM.displayPhotoPosts(posts, user, 10);
+                }
             });
         }
 
-        function searchHashTags(string) {
-            var newHashTag = '';
-            var arrNewHashTags = [];
-            var countHashTags = 0;
-            var flag = false;
-            for (var index = 0; index < string.length; index++) {
-                if (string[index] === '#') {
-                    flag = true;
-
-                }
-                if (flag) {
-                    newHashTag = newHashTag + string[index];
-                    if (string[index] === ' ' || index === string.length - 1) {
-                        if (index === string.length - 1) {
-                            newHashTag = newHashTag + ' ';
-                        }
-                        arrNewHashTags[countHashTags] = newHashTag;
-                        newHashTag = '';
-                        countHashTags++;
-                        flag = false;
-                    }
-                }
-            }
-            return arrNewHashTags;
-        }
 
         function addComment() {
-            var user = JSON.parse(localStorage.getItem('users'));
-            var photoPosts = JSON.parse(localStorage.getItem('posts'));
-            document.querySelector('.all_posts').addEventListener('keypress', function(event) {
+            document.querySelector('.all_posts').addEventListener('keypress', function (event) {
                 var target = event.target;
-
+                var user = JSON.parse(localStorage.getItem('user'));
+                var photoPosts = JSON.parse(localStorage.getItem('posts'));
                 if (event.which === 13) {
                     var postID = target.closest('.post').getAttribute('data-post-id');
-                    moduleDOM.addHashTagsSelect(moduleScript.getPhotoPost(postID, photoPosts), searchHashTags(target.value));
                     photoPosts = moduleDOM.addComment(photoPosts, postID - 1, [{
-                        author: user[0].username,
+                        author: user,
                         authorPhoto: 'site/avatar3.png',
                         comment: target.value
                     }]);
 
                     localStorage.setItem('posts', JSON.stringify(photoPosts));
-                    moduleDOM.displayPhotoPosts(photoPosts, user[0].username, 0);
+                    moduleDOM.displayPhotoPosts(photoPosts, user, 0);
                     event.preventDefault();
                 }
             });
         }
 
         function filter() {
-            document.getElementById('button_search').addEventListener('click', ()=>{
+            document.getElementById('button_search').addEventListener('click', () => {
                     var username = document.search.username.value;
                     var photoPosts = JSON.parse(localStorage.getItem('posts'));
                     var date = document.search.date.value;
@@ -406,9 +523,9 @@ var moduleEvents = (function() {
                         createdAt: date,
                         hashTag: hashTag
                     }, photoPosts);
-                    var user = JSON.parse(localStorage.getItem('users'));
+                    var user = JSON.parse(localStorage.getItem('user'));
                     localStorage.setItem('posts', JSON.stringify(photoPosts));
-                    moduleDOM.displayPhotoPosts(photoPosts, user[0].username, 0);
+                    moduleDOM.displayPhotoPosts(photoPosts, user, 0);
                     event.preventDefault();
                 }
             );
@@ -421,7 +538,11 @@ var moduleEvents = (function() {
             authorization: authorization,
             addComment: addComment,
             buttonLoadMorePosts: buttonLoadMorePosts,
-            searchHashTags: searchHashTags
+            buttonPageWithPosts: buttonPageWithPosts,
+            buttonEditDescription: buttonEditDescription,
+            buttonEditPhoto: buttonEditPhoto,
+            buttonCreateNewPost: buttonCreateNewPost,
+            buttonAddNewPostPageEdit: buttonAddNewPostPageEdit
         }
     }
 )();
@@ -431,3 +552,8 @@ console.log(moduleEvents.buttonsPost());
 console.log(moduleEvents.authorization());
 console.log(moduleEvents.addComment());
 console.log(moduleEvents.buttonLoadMorePosts());
+console.log(moduleEvents.buttonPageWithPosts());
+console.log(moduleEvents.buttonEditDescription());
+console.log(moduleEvents.buttonEditPhoto());
+console.log(moduleEvents.buttonCreateNewPost());
+console.log(moduleEvents.buttonAddNewPostPageEdit());
