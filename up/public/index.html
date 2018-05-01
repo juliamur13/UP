@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device-width, initial-scale=1">
+    <title>D &W</title>
+    <link rel="stylesheet" href="style.css" media="screen">
+</head>
+<body>
+<header>
+    <div class="header-line">
+        <div class="left_header">
+            <a href="#" class="logo">D &W</a>
+            <a href="#" class="button_add_post">Добавить пост</a>
+        </div>
+        <div class="right_header">
+            <a href="#" class="button_exit">Вход</a>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="pictures_space">
+        <img class="pictures" src="site\picture1.jpg"/>
+    </div>
+    <div class="photo_line">
+        <div class="parent_user">
+            <div class=" user">
+                <img class="user_name_photo" src="site\avatar3.png"/>
+                <p class="user_name_text">Имя пользователя</p>
+                <p class="user_text">Информация об авторизованном пользователе</p>
+            </div>
+            <div class="parent_filter">
+                <div class="filter">
+                    <div class="left_filter">
+                        <input type="button" id="button_search" value="     Поиск     "/>
+                    </div>
+                    <form name="search" class="parent_input">
+                        <div class="filter_input">
+                            <input class="add_text" name="username" type="text" placeholder="Имя автора..."/>
+                        </div>
+                        <div class="filter_input">
+                            <input class="add_text" name="date" type="text" placeholder="Дата..."/>
+                        </div>
+                        <div class="filter_input">
+                            <select class="select_text" name="hashTags">
+                                <option value="" hidden disabled selected>Хэштеги...</option>
+                                <option>#roses</option>
+                                <option>#rosesBeauty</option>
+                                <option>#rosesRoses</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="all_posts"></div>
+    </div>
+    <div class="load_more">
+        <a class="button_add_more" href='#'>
+            <img class="add_more" src="site\add_more4.png"/>
+        </a>
+    </div>
+</main>
+<footer>
+    <div class="footer_line">
+        <div class="side_footer">
+            <p class="footer_text">Murashko J.M.</p>
+            <p class="footer_text">2 course, 6 groupe</p>
+        </div>
+        <a href="#" class="footer_logo"> </a>
+        <div class="side_footer">
+            <p class="footer_text">my_dream13@list.ru</p>
+            <p class="footer_text">
+                <script language="JavaScript">
+                    document.write(document.lastModified);
+                </script>
+            </p>
+        </div>
+    </div>
+    <p></p>
+</footer>
+<script src="DOM.js"></script>
+<script src="Events.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
