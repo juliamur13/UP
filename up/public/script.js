@@ -265,26 +265,26 @@ var moduleScript = (function () {
     }];
 
     function validatePhotoPost(photoPost) {
-        /* if (!photoPost.hasOwnProperty('hashTags')){
-            return false;
-        }
-        if (!photoPost.hasOwnProperty('likes')){
-            return false;
-        }*/
         if (typeof (photoPost.id) !== "string" || typeof (photoPost.author) !== "string" || typeof (photoPost.description) !== "string" || typeof (photoPost.photoLink) !== "string") {
             return false;
         }
         if (photoPost.id.trim() === "" || photoPost.author.trim() === "" || photoPost.description.trim() === "" || photoPost.photoLink.trim() === "") {
             return false;
         }
-        for (var i in photoPost.hashTags) {
-            if (typeof (photoPost.hashTags[i]) !== "string" || photoPost.hashTags[i].trim() === "") {
+        for (let index = 0; index < photoPost.hashTags.length; index++) {
+            if (typeof (photoPost.hashTags[index]) !== "string" || photoPost.hashTags[index].trim() === "") {
                 return false;
             }
         }
 
-        for (var i in photoPost.likes) {
-            if (typeof (photoPost.likes[i]) !== "string" || photoPost.likes[i].trim() === "") {
+        for (let item = 0; item < photoPost.likes.length; item++) {
+            if (typeof (photoPost.likes[item]) !== "string" || photoPost.likes[item].trim() === "") {
+                return false;
+            }
+        }
+
+        for (let indexComments = 0; item < photoPost.comments.length; indexComments++) {
+            if (typeof (photoPost.comments[indexComments]) !== "string" || photoPost.comments[indexComments].trim() === "") {
                 return false;
             }
         }
@@ -338,7 +338,7 @@ var moduleScript = (function () {
                 resultArray = filterHashTag(resultArray, filterConfig.hashTag);
             }
             if (filterConfig.createdAt !== '') {
-                resultArray = resultArray.filter((element) => new Date(element.createdAt).toLocaleDateString() === filterConfig.createdAt);
+                resultArray = photoPosts.filter((element) => new Date(element.createdAt).toLocaleDateString() === filterConfig.createdAt);
             }
         }
         return resultArray;
@@ -404,6 +404,25 @@ var moduleScript = (function () {
     }
 
 }());
+console.log(moduleScript.getPhotoPosts({
+    createdAt: '25.04.2018',
+    author: 'Author1',
+    hashTag: '#roses'
+},[{
+
+    id: '1',
+        description: 'description1',
+    createdAt: new Date(2018, 3, 25),
+    author: 'Author1',
+    photoLink: 'site/photo2.jpg',
+    hashTags: ['#roses', '#flowers', '#plant'],
+    likes: ['like2', 'like1', 'like3'],
+    comments: [{
+    author: 'CommentsAuthor1',
+    authorPhoto: 'site/user.png',
+    comment: 'Комментарий'
+}]
+}]));
 // console.log(moduleScript.validatePhotoPost(getPhotoPost("2")));
 // console.log(moduleScript.validatePhotoPost(getPhotoPost("3")));
 // console.log(moduleScript.getPhotoPosts(10, 5));
