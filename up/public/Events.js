@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 var photoPosts = [{
     id: '1',
     description: 'description1',
@@ -260,6 +260,7 @@ var photoPosts = [{
         comment: 'Комментарий'
     }]
 }];
+
 var moduleEvents = (function () {
 
         function addPhotoPosts() {
@@ -280,7 +281,7 @@ var moduleEvents = (function () {
                     posts.push(JSON.parse(localStorage.getItem('posts'))[item]);
                 }
             }
-            moduleDOM.displayPhotoPosts(posts, user, 0);
+            moduleDOM.showPhotoPosts(posts, user, 0);
         }
 
         function like(post, target) {
@@ -315,13 +316,14 @@ var moduleEvents = (function () {
                     var hashTags = document.querySelector('.hashTag-text-edit').innerHTML;
                     // var userInfo = document.querySelector('.user-text-edit').innerHTML;
                     var id = target.closest('.post.page-edit').getAttribute('data-post-id');
-                    var arrHashTags = moduleDOM.searchHashTags(hashTags);
+                    var arrHashTags = moduleScript.searchHashTags(hashTags);
                     moduleDOM.addHashTagsSelect(arrHashTags);
-                    var indexPost = getIndex(id.toString(), photoPosts);
+                    var indexPost = moduleScript.getIndex(id.toString(), photoPosts);
                     var checkIndex = 0;
                     photoPosts[indexPost].description = description;
                     photoPosts[indexPost].photoLink = 'site/photo19.jpg';
                     photoPosts[indexPost].createdAt = Date.now();
+                    photoPosts[indexPost].hashTags = [];
                     for (var index = 0; index < arrHashTags.length; index++) {
                         checkIndex = photoPosts[indexPost].hashTags.findIndex((element) => element === arrHashTags[index]);
                         if (checkIndex === -1) {
@@ -330,7 +332,7 @@ var moduleEvents = (function () {
                     }
                     localStorage.setItem('posts', JSON.stringify(photoPosts));
                     moduleDOM.removePageEdit();
-                    moduleDOM.displayPhotoPosts(photoPosts, user, 0);
+                    moduleDOM.showPhotoPosts(photoPosts, user, 0);
                 }
             });
         }
@@ -340,7 +342,7 @@ var moduleEvents = (function () {
                 var target = event.target;
                 if (target.className === 'button_add_post' && !document.querySelector('main').contains(document.querySelector('.post.page-edit'))) {
                     var photoPosts = JSON.parse(localStorage.getItem('posts'));
-                    var id = (parseInt(moduleDOM.searchMaxId(photoPosts)) + 1).toString();
+                    var id = (parseInt(moduleScript.searchMaxId(photoPosts)) + 1).toString();
                     var user = JSON.parse(localStorage.getItem('user'));
                     var photoPost = {
                         id: id,
@@ -352,14 +354,13 @@ var moduleEvents = (function () {
                         likes: [],
                         comments: []
                     };
-                    moduleDOM.displayPageCreateNewPost(photoPost);
+                    moduleDOM.showPageCreateNewPost(photoPost);
                 }
             });
         }
 
         function buttonAddNewPostPageEdit() {
             document.querySelector('main').addEventListener('click', (event) => {
-
                 var target = event.target;
                 if (target.className === 'button-edit-page create') {
                     var photoPosts = JSON.parse(localStorage.getItem('posts'));
@@ -368,7 +369,7 @@ var moduleEvents = (function () {
                     var photoLink = 'site/photo7.jpg';
                     var id = target.closest('.post.page-edit').getAttribute('data-post-id');
                     var user = JSON.parse(localStorage.getItem('user'));
-                    var arrHashTags = moduleDOM.searchHashTags(hashTags);
+                    var arrHashTags = moduleScript.searchHashTags(hashTags);
                     moduleDOM.addHashTagsSelect(arrHashTags);
                     var photoPost = {
                         id: id,
@@ -383,7 +384,7 @@ var moduleEvents = (function () {
                     photoPosts.push(photoPost);
                     localStorage.setItem('posts', JSON.stringify(photoPosts));
                     moduleDOM.removePageEdit();
-                    moduleDOM.displayPhotoPosts(photoPosts, user, 0);
+                    moduleDOM.showPhotoPosts(photoPosts, user, 0);
                 }
             });
         }
@@ -410,11 +411,10 @@ var moduleEvents = (function () {
                 var COUNT_CLASSES = 2;
                 if (target.classList.length === COUNT_CLASSES) {
                     moduleDOM.removePageSignUp();
-                    moduleDOM.displayPhotoPosts(photoPosts, user, 0);
+                    moduleDOM.showPhotoPosts(photoPosts, user, 0);
                 }
             });
         }
-
 
         function authorization() {
             var buttonExit = document.querySelector('.button_exit');
@@ -422,7 +422,7 @@ var moduleEvents = (function () {
                 if (!document.querySelector('main').contains(document.querySelector('.post.page-edit'))) {
                     var user = JSON.parse(localStorage.getItem('user'));
                     if (buttonExit.textContent === 'Вход') {
-                        moduleDOM.displaySignUp();
+                        moduleDOM.showPageSignUp();
                     }
                     if (buttonExit.textContent === 'Авторизация') {
                         document.querySelector('.button-sign-up').addEventListener('click', (event) => {
@@ -433,17 +433,17 @@ var moduleEvents = (function () {
                                 moduleDOM.controlUser(username);
                                 localStorage.setItem('user', JSON.stringify(username));
                                 moduleDOM.removePageSignUp();
-                                moduleDOM.displayPhotoPosts(photoPosts, username, 0);
+                                moduleDOM.showPhotoPosts(photoPosts, username, 0);
                             }
                             else {
-                                moduleDOM.errorAuthorization();
+                                moduleDOM.showErrorAuthorization();
                             }
                             event.preventDefault();
                         });
                         event.preventDefault();
                     }
                     if (buttonExit.textContent === 'Выход') {
-                        moduleDOM.displaySignUp();
+                        moduleDOM.showPageSignUp();
                         user = null;
                         localStorage.setItem('user', user);
                     }
@@ -451,29 +451,21 @@ var moduleEvents = (function () {
             });
         }
 
-        function getIndex(id, photoPosts) {
-            for (var index = 0; index < photoPosts.length; index++) {
-                if (photoPosts[index].id === id) {
-                    return index;
-                }
-            }
-        }
-
         function buttonsPost() {
-
             document.querySelector('.all_posts').addEventListener('click', (event) => {
                     var photoPosts = JSON.parse(localStorage.getItem('posts'));
                     var target = event.target;
                     var id = target.closest('.post').getAttribute('data-post-id');
-                    var indexPost = getIndex(id.toString(), photoPosts);
+                    var indexPost = moduleScript.getIndex(id.toString(), photoPosts);
                     if (target.className === 'button_edit_like' && photoPosts[indexPost]) {
                         photoPosts[indexPost].likes = like(photoPosts[indexPost], target);
                     }
                     if (target.className === 'button_edit_delete' && photoPosts[indexPost]) {
-                        photoPosts = moduleDOM.removeHtmlPost(id);
+                        moduleDOM.removeHtmlPost(id);
+                        photoPosts = moduleScript.removePhotoPost(photoPosts, id);
                     }
                     if (target.className === 'button_edit' && photoPosts[indexPost]) {
-                        moduleDOM.displayPageEdit(photoPosts[indexPost]);
+                        moduleDOM.showPageEdit(photoPosts[indexPost]);
                     }
                     localStorage.setItem('posts', JSON.stringify(photoPosts));
                 }
@@ -486,11 +478,10 @@ var moduleEvents = (function () {
                 var user = JSON.parse(localStorage.getItem('user'));
                 var posts = JSON.parse(localStorage.getItem('posts'));
                 if (target.className === 'add_more') {
-                    moduleDOM.displayPhotoPosts(posts, user, 10);
+                    moduleDOM.showPhotoPosts(posts, user, 10);
                 }
             });
         }
-
 
         function addComment() {
             document.querySelector('.all_posts').addEventListener('keypress', function (event) {
@@ -499,14 +490,14 @@ var moduleEvents = (function () {
                 var photoPosts = JSON.parse(localStorage.getItem('posts'));
                 if (event.which === 13) {
                     var postID = target.closest('.post').getAttribute('data-post-id');
-                    photoPosts = moduleDOM.addComment(photoPosts, postID - 1, [{
+                    photoPosts = moduleScript.addComment(photoPosts, postID - 1, [{
                         author: user,
                         authorPhoto: 'site/avatar3.png',
                         comment: target.value
                     }]);
 
                     localStorage.setItem('posts', JSON.stringify(photoPosts));
-                    moduleDOM.displayPhotoPosts(photoPosts, user, 0);
+                    moduleDOM.showPhotoPosts(photoPosts, user, 0);
                     event.preventDefault();
                 }
             });
@@ -525,7 +516,7 @@ var moduleEvents = (function () {
                     }, photoPosts);
                     var user = JSON.parse(localStorage.getItem('user'));
                     localStorage.setItem('posts', JSON.stringify(photoPosts));
-                    moduleDOM.displayPhotoPosts(photoPosts, user, 0);
+                    moduleDOM.showPhotoPosts(photoPosts, user, 0);
                     event.preventDefault();
                 }
             );

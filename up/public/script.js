@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 
 var moduleScript = (function () {
 
@@ -264,6 +264,19 @@ var moduleScript = (function () {
         }]
     }];
 
+
+    function searchMaxId(photoPosts) {
+        var max = 0;
+        var id;
+        photoPosts.forEach(function(item, i , photoPosts){
+            id = photoPosts[i].id;
+            if (max < parseInt(id)) {
+                max = id;
+            }
+        });
+        return max;
+    }
+
     function validatePhotoPost(photoPost) {
         if (typeof (photoPost.id) !== "string" || typeof (photoPost.author) !== "string" || typeof (photoPost.description) !== "string" || typeof (photoPost.photoLink) !== "string") {
             return false;
@@ -316,9 +329,46 @@ var moduleScript = (function () {
         }
         return result;
     }
+    function searchHashTags(string) { //поиск хешетгов в строке, обрабатываем запятую, # и пробелы
+        var newHashTag = '';
+        var arrNewHashTags = [];
+        var countHashTags = 0;
+        var countHashSymbols = 0;
+        var flag = false;
+        for (var index = 0; index < string.length; index++) {
+            if (string[index] === '#') {
+                flag = true;
+                countHashTags++;
+                countHashSymbols++;
+            }
+            if (flag) {
+                var check = string[index] === '#' && countHashSymbols > 1;
+                if (check) {
+                    countHashTags--;
+                }
+                if (!check && !(string[index] === ',') && !(string[index] === ' ')) {
+                    newHashTag = newHashTag + string[index];
+                }
+                if (string[index] === ' ' || index === string.length - 1 || string[index] === ',' || check) {
+
+                    arrNewHashTags[countHashTags - 1] = newHashTag;
+                    newHashTag = '';
+
+                    flag = false;
+                    countHashSymbols++;
+                    if (string[index] === '#' && countHashSymbols > 0) {
+                        index--;
+                    }
+                    countHashSymbols = 0;
+                }
+
+            }
+        }
+        return arrNewHashTags;
+    }
 
     function compareDate(a, b) {
-        return new Date(b.createdAt) - new Date(a.createdAt);
+        return new Date(a.createdAt) - new Date(b.createdAt);
     }
 
     function sortPostsByDate(posts) {
@@ -344,14 +394,34 @@ var moduleScript = (function () {
         return resultArray;
     }
 
-    function removePhotoPost(photoPosts, id) {
+    function addComment(photoPosts, id, comment) {
+        var index = getIndex((id + 1).toString(), photoPosts);
+        if(index != -1) {
+            for (var item = 0; item < comment.length; item++) {
+                photoPosts[index].comments.push(comment[item]);
+            }
+        }
+        return photoPosts;
+    }
+
+    function getIndex(id, photoPosts) {
+        for (var index = 0; index < photoPosts.length; index++) {
+            if (photoPosts[index].id === id) {
+                return index;
+            }
+        }
+    }
+
+
+    function removePhotoPost(posts, id) {
         var index = photoPosts.findIndex((element) => element.id === id);
         if (index != -1) {
-            photoPosts.splice(id - 1, 1);
-            return true;
+            //document.querySelector('.post[data-post-id="' + id + '"]').classList.add('hide');
+            posts.splice(id - 1, 1);
         }
-        return false;
+        return posts;
     }
+
 
     function addPhotoPost(photoPost) {
         if (validatePhotoPost(photoPost)) {
@@ -395,12 +465,16 @@ var moduleScript = (function () {
 
     return {
         posts: posts,
+        searchMaxId: searchMaxId,
         validatePhotoPost: validatePhotoPost,
         getPhotoPost: getPhotoPost,
         addPhotoPost: addPhotoPost,
         getPhotoPosts: getPhotoPosts,
         removePhotoPost: removePhotoPost,
-        sortPostsByDate: sortPostsByDate
+        sortPostsByDate: sortPostsByDate,
+        addComment: addComment,
+        searchHashTags: searchHashTags,
+        getIndex: getIndex
     }
 
 }());

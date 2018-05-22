@@ -1,30 +1,20 @@
-'use strict';
+﻿'use strict';
 var moduleDOM = (function () {
 
-    function removePhotoPost(posts, id) {
-        var index = photoPosts.findIndex((element) => element.id === id);
-        if (index != -1) {
-            //document.querySelector('.post[data-post-id="' + id + '"]').classList.add('hide');
-            posts.splice(id - 1, 1);
-        }
-        return posts;
-    }
-
-    function controlPost(photoPost, user) {
-        var COUNT_CLASSES = 2;
+    function controlUserPost(photoPost, user) {
         var like = document.querySelector('.link_edit_like');
         var remove = document.querySelector('.link_edit_delete');
         var input = document.querySelector('.text');
         var edit = document.querySelector('.link_edit');
-        if (photoPost.author !== user && like.classList.length !== COUNT_CLASSES) {
+        if (photoPost.author !== user && !like.classList.contains('hide')) {
             remove.classList.add('hide');
             edit.classList.add('hide');
         }
-        if (!user && like.classList.length !== COUNT_CLASSES) {
+        if (!user && !like.classList.contains('hide')) {
             input.classList.add('hide');
             like.classList.add('hide');
         }
-        if (user && like.classList.length === COUNT_CLASSES) {
+        if (user && like.classList.contains('hide')) {
             like.classList.remove('.hide');
             input.classList.remove('hide');
             if (user === photoPost.author) {
@@ -37,14 +27,13 @@ var moduleDOM = (function () {
             if (index !== -1) {
                 var post = document.querySelector('.button_edit_like');
                 post.src = 'site/like5.png';
-                //console.log(document.getElementsByClassName('button_edit_like').src);
             }
         }
     }
 
     function removeHtmlPost(id) {
         var container = document.querySelector('.all_posts');
-        var deleteElem = document.querySelector('.post[data-post-id="' + id + '"]');
+        var deleteElem = container.querySelector('.post[data-post-id="' + id + '"]');
         container.removeChild(deleteElem);
     }
 
@@ -62,20 +51,11 @@ var moduleDOM = (function () {
         }
     }
 
-    function controlPhotoPosts(photoPosts, user) {
-        for (var index = 0; index < photoPosts.length; index++) {
-            controlPost(photoPosts[index], user);
-        }
-    }
-
-    function compareDate(a, b) {
-        return new Date(a.createdAt) - new Date(b.createdAt);
-    }
-
-    function sortPostsByDate(posts) {
-        posts.sort(compareDate);
-        return posts;
-    }
+    // function controlPhotoPosts(photoPosts, user) {
+    //     for (var index = 0; index < photoPosts.length; index++) {
+    //         controlPost(photoPosts[index], user);
+    //     }
+    // }
 
     // function controlSelector(photoPosts) {
     //     for (var indexPosts = 0; indexPosts < photoPosts.length; indexPosts++) {
@@ -85,11 +65,11 @@ var moduleDOM = (function () {
     //     }
     // }
 
-    function removeButtonLoadMorePosts() {
+    function hideLoadMoreBtn() {
         document.querySelector('.button_add_more').classList.add('hide');
     }
 
-    function messageNoPosts() {
+    function showNoPostsMsg() {
         var parentElement = document.querySelector('.photo_line');
         var newElem = document.createElement('p');
         newElem.className = 'message-no-posts';
@@ -98,13 +78,13 @@ var moduleDOM = (function () {
         document.querySelector('.footer_logo').textContent = '';
     }
 
-    function displayPhotoPosts(photoPosts, user, countElementsAdd) {
+    function showPhotoPosts(photoPosts, user, countElementsAdd) {
         controlUser(user);
         var COUNT_ELEMENTS = 10;
         var countPostsDisplay;
         var countPostsHtml = document.getElementsByClassName('post').length;
         var countPostsHtmlCopy = countPostsHtml;
-        photoPosts = sortPostsByDate(photoPosts);
+        photoPosts = moduleScript.sortPostsByDate(photoPosts);
         while (countPostsHtmlCopy) {
             removeHtmlPost(document.getElementsByClassName('post')[0].getAttribute('data-post-id'));
             countPostsHtmlCopy--;
@@ -120,7 +100,7 @@ var moduleDOM = (function () {
                 }
             }
             if (photoPosts.length - countPostsDisplay === 0) {
-                removeButtonLoadMorePosts();
+                hideLoadMoreBtn();
             }
             for (var index = photoPosts.length - countPostsDisplay; index < photoPosts.length; index++) {
                 addPhotoPost(photoPosts[index], user);
@@ -128,60 +108,10 @@ var moduleDOM = (function () {
         }
         else {
             if (!document.querySelector('.message-no-posts')) {
-                messageNoPosts();
-                removeButtonLoadMorePosts();
+                showNoPostsMsg();
+                hideLoadMoreBtn();
             }
         }
-    }
-
-    function searchMaxId(photoPosts) {
-        var max = 0;
-        var id;
-        for (var index = 0; index < photoPosts.length; index++) {
-            id = photoPosts[index].id;
-            if (max < parseInt(id)) {
-                max = id;
-            }
-        }
-        return max;
-    }
-
-    function searchHashTags(string) {
-        var newHashTag = '';
-        var arrNewHashTags = [];
-        var countHashTags = 0;
-        var countHashSymbols = 0;
-        var flag = false;
-        for (var index = 0; index < string.length; index++) {
-            if (string[index] === '#') {
-                flag = true;
-                countHashTags++;
-                countHashSymbols++;
-            }
-            if (flag) {
-                var check = string[index] === '#' && countHashSymbols > 1;
-                if (check) {
-                    countHashTags--;
-                }
-                if (!check && !(string[index] === ',') && !(string[index] === ' ')) {
-                    newHashTag = newHashTag + string[index];
-                }
-                if (string[index] === ' ' || index === string.length - 1 || string[index] === ',' || check) {
-
-                    arrNewHashTags[countHashTags - 1] = newHashTag;
-                    newHashTag = '';
-
-                    flag = false;
-                    countHashSymbols++;
-                    if (string[index] === '#' && countHashSymbols > 0) {
-                        index--;
-                    }
-                    countHashSymbols = 0;
-                }
-
-            }
-        }
-        return arrNewHashTags;
     }
 
     function addOptionToSelect(elementArr, select) {
@@ -190,12 +120,6 @@ var moduleDOM = (function () {
         select.appendChild(option)
     }
 
-    function addComment(posts, postID, comment) {
-        for (var index = 0; index < comment.length; index++) {
-            posts[postID].comments.push(comment[index]);
-        }
-        return posts;
-    }
 
     function addHashTagsSelect(arrHashTags) {
         var arr = [];
@@ -215,7 +139,7 @@ var moduleDOM = (function () {
         }
     }
 
-    function errorAuthorization() {
+    function showErrorAuthorization() {
         var parentElement = document.querySelector('.inputs');
         var newElem = document.createElement('p');
         newElem.className = 'error-sign-up';
@@ -223,14 +147,14 @@ var moduleDOM = (function () {
         parentElement.appendChild(newElem);
     }
 
-    function displayPageCreateNewPost(photoPost) {
-        displayPageEdit(photoPost);
+    function showPageCreateNewPost(photoPost) {
+        showPageEdit(photoPost);
         var buttonCreatePost = document.querySelector('.button-edit-page');
         buttonCreatePost.value = '  Добавить  ';
         buttonCreatePost.classList.add('create');
     }
 
-    function displayPageEdit(photoPost) {
+    function showPageEdit(photoPost) {
         document.querySelector('.pictures_space').classList.add('hide');
         document.querySelector('.photo_line').classList.add('hide');
         document.querySelector('.load_more').classList.add('hide');
@@ -302,7 +226,7 @@ var moduleDOM = (function () {
         document.querySelector('main').removeChild(document.querySelector('.log-in'));
     }
 
-    function displaySignUp() {
+    function showPageSignUp() {
         document.querySelector('.header-line').classList.add('sign-up');
         document.querySelector('.logo').classList.add('sign-up');
         document.querySelector('header').classList.add('sign-up');
@@ -386,26 +310,21 @@ var moduleDOM = (function () {
         if (photoPost.id > photoPosts.length) {
             photoPosts.push(photoPost);
         }
-        controlPost(photoPost, user);
+        controlUserPost(photoPost, user);
     }
 
     return {
-        removePhotoPost: removePhotoPost,
         addPhotoPost: addPhotoPost,
-        displayPhotoPosts: displayPhotoPosts,
+        showPhotoPosts: showPhotoPosts,
         addHashTagsSelect: addHashTagsSelect,
         controlUser: controlUser,
-        addComment: addComment,
         removeHtmlPost: removeHtmlPost,
-        searchHashTags: searchHashTags,
-        displaySignUp: displaySignUp,
-        errorAuthorization: errorAuthorization,
+        showPageSignUp: showPageSignUp,
+        showErrorAuthorization: showErrorAuthorization,
         removePageSignUp: removePageSignUp,
-        controlPhotoPosts: controlPhotoPosts,
-        displayPageEdit: displayPageEdit,
+        showPageEdit: showPageEdit,
         removePageEdit: removePageEdit,
-        displayPageCreateNewPost: displayPageCreateNewPost,
-        searchMaxId: searchMaxId
+        showPageCreateNewPost: showPageCreateNewPost
     }
 
 }());
