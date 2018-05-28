@@ -1,10 +1,12 @@
+//const multer = require('multer');
 const express = require('express');
 const fs = require('fs');
 const app = express();
 const bodyParser = require('body-parser');
 let posts = JSON.parse(fs.readFileSync('./server/data/posts.json'));
-app.use('/', express.static('public'));
-app.use(bodyParser.urlencoded({ extended: true }));
+let users = JSON.parse(fs.readFileSync('./server/data/users.json'));
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 function getPhotoPost(id) {
@@ -14,6 +16,16 @@ function getPhotoPost(id) {
     return false;
 }
 
+// const upload = {
+//     storage: multer.diskStorage({
+//         destination: function (req, file, sb) {
+//             sb(null, './public/images');
+//         },
+//         filename: function (req, file, sb) {
+//             sb(null, file.originalname);
+//         }
+//     })
+// };
 
 function addPhotoPost(photoPost) {
     if (posts) {
@@ -21,12 +33,11 @@ function addPhotoPost(photoPost) {
         if (validatePhotoPost(photoPost) && posts) {
             posts.push(photoPost);
             fs.writeFile(('./server/data/posts.json'), JSON.stringify(posts));
-            return true;
+            return posts;
         }
     }
     return false;
 }
-
 
 
 function validatePhotoPost(photoPost) {
@@ -68,7 +79,7 @@ function getPhotoPosts(filterConfig) {
                 posts = posts.filter((element) => new Date(element.createdAt).toLocaleDateString() === filterConfig.createdAt);
             }
         }
-        return posts;
+        return true;
     }
     return false;
 }
@@ -79,35 +90,36 @@ function removePhotoPost(id) {
         if (index != -1) {
             posts.splice(index, 1);
             fs.writeFile(('./server/data/posts.json'), JSON.stringify(posts));
-            return true;
+            return posts;
         }
     }
     return false;
 }
 
-function editPhotoPost(id, photoPost) {
-    var changedPhotoPost = getPhotoPost(id);
-    if (validatePhotoPost(changedPhotoPost)) {
-        if (!photoPost) {
-            return false;
-        }
-        if (photoPost.description && photoPost.description.length !== 0) {
-            changedPhotoPost.description = photoPost.description;
-        }
-        if (photoPost.hashTags && photoPost.hashTags.length !== 0) {
-            changedPhotoPost.hashTags = photoPost.hashTags;
-        }
-        if (photoPost.likes && photoPost.likes.length !== 0) {
-            changedPhotoPost.likes = photoPost.likes;
-        }
-        if (photoPost.photoLink && photoPost.photoLink.length !== 0) {
-            changedPhotoPost.photoLink = photoPost.photoLink;
-        }
-        return true;
-    }
-    return false;
+function getUsers() {
+    return users;
 }
 
+function editPhotoPost(id, changedPhotoPost) {
+    let index = posts.findIndex(post => post.id === id);
+    if(index !== -1) {
+        if (changedPhotoPost.description && changedPhotoPost.description) {
+            posts[index].description = changedPhotoPost.description;
+        }
+        if (changedPhotoPost.hashTags && changedPhotoPost.hashTags.length !== 0) {
+            posts[index].hashTags = changedPhotoPost.hashTags;
+        }
+        if (changedPhotoPost.likes && changedPhotoPost.likes.length !== 0) {
+            posts[index].likes = changedPhotoPost.likes;
+        }
+        if (changedPhotoPost.photoLink && changedPhotoPost.photoLink !== 0) {
+            posts[index].photoLink = changedPhotoPost.photoLink;
+        }
+        if (changedPhotoPost.comments && changedPhotoPost.comments !== 0) {
+            posts[index].comments = changedPhotoPost.comments;
+        }
+    }
+}
 
 app.get('/getPhotoPost', (req, res) => {
     let post = getPhotoPost(req.query.id);
@@ -118,13 +130,18 @@ app.get('/getAllPhotoPosts', (req, res) => {
     posts ? res.send(posts) : res.status(404).end();
 });
 
+app.get('/getAllUsers', (req, res) => {
+    const users = getUsers();
+    users ? res.send(users) : res.status(404).end();
+});
+
 app.post('/getPhotoPosts', (req, res) => {
-    let resultPosts = getPhotoPosts(req.body);
-    resultPosts ? res.send(resultPosts) : res.status(404).end();
+    getPhotoPosts(req.body) ? res.send(posts) : res.status(404).end();
 });
 
 app.post('/addPhotoPost', (req, res) => {
-    if (addPhotoPost(req.body)) {
+    let posts = addPhotoPost(req.body);
+    if (posts) {
         res.send(posts);
     } else {
         res.status(404).end();
@@ -135,6 +152,7 @@ app.put('/editPhotoPost', (req, res) => {
     let post = req.body;
     if (post) {
         editPhotoPost(req.query.id, post);
+        fs.writeFile(('./server/data/posts.json'), JSON.stringify(posts));
         res.send(posts);
     } else {
         res.status(404).end();
@@ -143,7 +161,8 @@ app.put('/editPhotoPost', (req, res) => {
 
 app.delete('/removePhotoPost', (req, res) => {
     let id = req.query.id;
-    if (removePhotoPost(id)) {
+    let posts = removePhotoPost(id);
+    if (posts) {
         res.send(posts);
     } else {
         res.status(404).end();

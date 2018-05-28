@@ -179,6 +179,9 @@ a {
 .user_photopost {
     width: 65%;
 }
+.user_photopost.page-edit{
+    width: 65%;
+}
 
 .comments {
     width: 35%;

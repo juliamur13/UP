@@ -82,6 +82,7 @@ var moduleDOM = (function () {
         controlUser(user);
         var COUNT_ELEMENTS = 10;
         var countPostsDisplay;
+        var start = 0;
         var countPostsHtml = document.getElementsByClassName('post').length;
         var countPostsHtmlCopy = countPostsHtml;
         photoPosts = moduleScript.sortPostsByDate(photoPosts);
@@ -102,8 +103,12 @@ var moduleDOM = (function () {
             if (photoPosts.length - countPostsDisplay === 0) {
                 hideLoadMoreBtn();
             }
-            for (var index = photoPosts.length - countPostsDisplay; index < photoPosts.length; index++) {
-                addPhotoPost(photoPosts[index], user);
+            if(photoPosts.length - countPostsDisplay < 0){
+                countPostsDisplay = photoPosts.length;
+            }
+            start = photoPosts.length - countPostsDisplay;
+            for (var index = start; index < photoPosts.length; index++) {
+                addPhotoPost(photoPosts[index], user, photoPosts);
             }
         }
         else {
@@ -260,7 +265,7 @@ var moduleDOM = (function () {
         document.querySelector('main').appendChild(newElem);
     }
 
-    function addPhotoPost(photoPost, user) {
+    function addPhotoPost(photoPost, user, photoPosts) {
         var posts = document.querySelector('.all_posts');
         var firstElem = document.getElementsByClassName('post')[0];
         var newElem = document.createElement('div');
@@ -307,9 +312,9 @@ var moduleDOM = (function () {
         `;
 
         posts.insertBefore(newElem, firstElem);
-        if (photoPost.id > photoPosts.length) {
-            photoPosts.push(photoPost);
-        }
+        // if (photoPost.id > photoPosts.length) {
+        //     photoPosts.push(photoPost);
+        // }
         controlUserPost(photoPost, user);
     }
 
