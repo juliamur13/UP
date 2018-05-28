@@ -1,6 +1,8 @@
 ﻿'use strict';
+
 var moduleEvents = (function () {
         let photoPosts;
+        let newPhoto = 'site/photo7.jpg';
 
         async function load() {
             photoPosts = await moduleScript.loadPhotoPosts();
@@ -54,7 +56,7 @@ var moduleEvents = (function () {
                     var indexPost = moduleScript.getIndex(id, photoPosts);
                     var checkIndex = 0;
                     photoPosts[indexPost].description = description;
-                    photoPosts[indexPost].photoLink = 'site/photo19.jpg';
+                    photoPosts[indexPost].photoLink = newPhoto;
                     photoPosts[indexPost].createdAt = Date.now();
                     photoPosts[indexPost].hashTags = [];
                     for (var index = 0; index < arrHashTags.length; index++) {
@@ -63,7 +65,6 @@ var moduleEvents = (function () {
                             photoPosts[indexPost].hashTags.push(arrHashTags[index]);
                         }
                     }
-                    console.log(photoPosts[indexPost]);
                     await moduleScript.editPhotoPost(photoPosts[indexPost]);
                     moduleDOM.removePageEdit();
                     moduleDOM.showPhotoPosts(photoPosts, user, 0);
@@ -98,7 +99,6 @@ var moduleEvents = (function () {
                 if (target.className === 'button-edit-page create') {
                     var description = document.querySelector('.description-text-edit').innerHTML;
                     var hashTags = document.querySelector('.hashTag-text-edit').innerHTML;
-                    var photoLink = 'site/photo7.jpg';
                     var id = target.closest('.post.page-edit').getAttribute('data-post-id');
                     var user = JSON.parse(localStorage.getItem('user'));
                     var arrHashTags = moduleScript.searchHashTags(hashTags);
@@ -108,7 +108,7 @@ var moduleEvents = (function () {
                         description: description,
                         createdAt: Date.now(),
                         author: user,
-                        photoLink: photoLink,
+                        photoLink: newPhoto,
                         hashTags: arrHashTags,
                         likes: [],
                         comments: []
@@ -117,6 +117,24 @@ var moduleEvents = (function () {
                     await moduleScript.addPhotoPost(photoPost);
                     moduleDOM.removePageEdit();
                     moduleDOM.showPhotoPosts(photoPosts, user, 0);
+                }
+            });
+        }
+
+        function buttonAddImage() {
+            document.querySelector('main').addEventListener('change', (event) => {
+                var target = event.target;
+                if (target.className === 'file-input') {
+                    var file = event.target.files[0];
+                    let formData = new FormData();
+                    formData.append('file', file);
+
+                    let image = document.createElement('img');
+                    image.src = window.URL.createObjectURL(formData.get('file'));
+                    newPhoto = image.src;
+                    document.getElementsByClassName('new-edit')[0].src = newPhoto;
+                    moduleScript.addImage(formData);
+
                 }
             });
         }
@@ -203,7 +221,7 @@ var moduleEvents = (function () {
                     if (target.className === 'button_edit_delete' && photoPosts[indexPost]) {
                         moduleDOM.removeHtmlPost(id);
                         photoPosts = removeElementArray(photoPosts, id);
-                       // moduleDOM.showPhotoPosts(photoPosts, user, 0);
+                        // moduleDOM.showPhotoPosts(photoPosts, user, 0);
                         await moduleScript.removePhotoPost(id);
                     }
                     if (target.className === 'button_edit' && photoPosts[indexPost]) {
@@ -271,11 +289,13 @@ var moduleEvents = (function () {
             buttonEditDescription: buttonEditDescription,
             buttonEditPhoto: buttonEditPhoto,
             buttonCreateNewPost: buttonCreateNewPost,
-            buttonAddNewPostPageEdit: buttonAddNewPostPageEdit
+            buttonAddNewPostPageEdit: buttonAddNewPostPageEdit,
+            buttonAddImage: buttonAddImage
         }
     }
 )();
 console.log(moduleEvents.load());
+console.log(moduleEvents.buttonAddImage());
 console.log(moduleEvents.filter());
 console.log(moduleEvents.buttonsPost());
 console.log(moduleEvents.authorization());

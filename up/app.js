@@ -1,4 +1,4 @@
-//const multer = require('multer');
+const multer = require('multer');
 const express = require('express');
 const fs = require('fs');
 const app = express();
@@ -16,16 +16,16 @@ function getPhotoPost(id) {
     return false;
 }
 
-// const upload = {
-//     storage: multer.diskStorage({
-//         destination: function (req, file, sb) {
-//             sb(null, './public/images');
-//         },
-//         filename: function (req, file, sb) {
-//             sb(null, file.originalname);
-//         }
-//     })
-// };
+const upload = {
+    storage: multer.diskStorage({
+        destination: function (req, file, sb) {
+            sb(null, './public/site');
+        },
+        filename: function (req, file, sb) {
+            sb(null, file.originalname);
+        }
+    })
+};
 
 function addPhotoPost(photoPost) {
     if (posts) {
@@ -120,6 +120,11 @@ function editPhotoPost(id, changedPhotoPost) {
         }
     }
 }
+
+app.post('/addImage', multer(upload).single('file'), function (req, res) {
+    let filename = req.file.filename;
+    res.send(filename);
+});
 
 app.get('/getPhotoPost', (req, res) => {
     let post = getPhotoPost(req.query.id);

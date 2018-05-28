@@ -176,6 +176,9 @@ a {
     width: 100%;
 }
 
+.new-edit {
+    width: 100%;
+}
 .user_photopost {
     width: 65%;
 }
@@ -585,4 +588,8 @@ main.edit {
     font-size: 1.1vw;
     font-family: 'Cardo';
     margin-bottom: 0.0vw;
+}
+
+.file-input{
+    font-size: 0.7vw;
 }

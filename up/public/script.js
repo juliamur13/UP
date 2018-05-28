@@ -21,6 +21,12 @@ var moduleScript = (function () {
             });
     }
 
+    function addImage(formData){
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', '/addImage');
+        xhr.send(formData);
+    }
+
     function loadUsers() {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
@@ -120,6 +126,7 @@ var moduleScript = (function () {
             });
     }
 
+
     function searchMaxId(photoPosts) {
 
         var max = 0;
@@ -199,7 +206,6 @@ var moduleScript = (function () {
     }
 
 
-
     return {
         loadUsers: loadUsers,
         searchMaxId: searchMaxId,
@@ -211,7 +217,8 @@ var moduleScript = (function () {
         loadPhotoPosts: loadPhotoPosts,
         editPhotoPost: editPhotoPost,
         addPhotoPost: addPhotoPost,
-        getPhotoPosts: getPhotoPosts
+        getPhotoPosts: getPhotoPosts,
+        addImage: addImage
     }
 
 }());

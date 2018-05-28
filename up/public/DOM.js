@@ -186,8 +186,9 @@ var moduleDOM = (function () {
             </div>
             <div class="photopost">
                 <div class="user_photopost">
-                    <a><img class="photo" src='site/photo24.jpg' /></a>
+                    <a><img class="new-edit" src=${photoPost.photoLink} /></a>
                     <p class="date_post">${new Date(Date.now()).toLocaleDateString()}</p>
+                    <input type="file" class="file-input" accept="image/*">
                     <div class="description">
                         <p class="description-text-edit" contenteditable="true">${photoPost.description} </p>
                         <p class="hashTag-text-edit" contenteditable="true">${photoPost.hashTags}</p>
